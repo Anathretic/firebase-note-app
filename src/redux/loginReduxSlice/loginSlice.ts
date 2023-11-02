@@ -1,11 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
+import { LoginAndRegisterState } from '../../models/loginAndRegister.model';
 
-interface LoginState {
-	value: boolean;
-}
-
-const initialState: LoginState = {
+const initialState: LoginAndRegisterState = {
 	value: false,
 };
 
