@@ -22,10 +22,15 @@ export const inputSlice = createSlice({
 			state.password = action.payload.password;
 			state.confirmPassword = action.payload.confirmPassword;
 		},
+		clearInputValue: state => {
+			state.email = '';
+			state.password = '';
+			state.confirmPassword = '';
+		},
 	},
 });
 
-export const { setInputValue } = inputSlice.actions;
+export const { setInputValue, clearInputValue } = inputSlice.actions;
 
 export const getInitialInputValue = (state: RootState) => state.inputReduxStore;
 

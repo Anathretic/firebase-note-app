@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import { closeRegister } from '../redux/registerReduxSlice/registerSlice';
-import { getInitialInputValue, setInputValue } from '../redux/inputReduxSlice/inputSlice';
+import { clearInputValue, getInitialInputValue, setInputValue } from '../redux/inputReduxSlice/inputSlice';
 
 import { registerSchema } from '../schemas/schemas';
 import { register } from '../firebase/firebaseClient';
@@ -22,6 +22,7 @@ export const Register: React.FC = () => {
 			const { email, password } = await registerSchema.validate(input);
 			const userCredential = await register(email, password);
 			const user = userCredential.user;
+			dispatch(clearInputValue());
 			console.log(user);
 			console.log('OK!');
 		} catch (error: unknown) {
@@ -72,7 +73,12 @@ export const Register: React.FC = () => {
 				<input type='submit' value='Register' />
 				<p>
 					Already have an account?{' '}
-					<button type='button' onClick={() => dispatch(closeRegister())}>
+					<button
+						type='button'
+						onClick={() => {
+							dispatch(closeRegister());
+							dispatch(clearInputValue());
+						}}>
 						Login
 					</button>
 				</p>
