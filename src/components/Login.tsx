@@ -1,13 +1,12 @@
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import { clearInputValue, getInitialInputValue, setInputValue } from '../redux/inputReduxSlice/inputSlice';
 import { openRegister } from '../redux/registerReduxSlice/registerSlice';
+import { setLogin } from '../redux/loginReduxSlice/loginSlice';
 
 import { loginSchema } from '../schemas/schemas';
 import { login } from '../firebase/firebaseClient';
 
 import * as yup from 'yup';
-import { setLogin } from '../redux/loginReduxSlice/loginSlice';
-import { setUserData } from '../redux/userReduxSlice/userSlice';
 
 export const Login: React.FC = () => {
 	const input = useAppSelector(state => getInitialInputValue(state));
@@ -22,13 +21,9 @@ export const Login: React.FC = () => {
 
 		try {
 			const { email, password } = await loginSchema.validate(input);
-			const userCredential = await login(email, password);
-			const user = userCredential.user;
+			await login(email, password);
 			dispatch(clearInputValue());
 			dispatch(setLogin());
-			dispatch(setUserData(user));
-			console.log(user);
-			console.log('OK!');
 		} catch (error: unknown) {
 			if (error instanceof yup.ValidationError) {
 				console.log(`Pole: ${error.path}, błąd: ${error.message} `);
@@ -37,8 +32,6 @@ export const Login: React.FC = () => {
 			}
 		}
 	};
-
-	console.log(input);
 
 	return (
 		<div>
