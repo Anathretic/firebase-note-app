@@ -2,11 +2,11 @@ import { combineReducers } from '@reduxjs/toolkit';
 import loginSlice from './loginReduxSlice/loginSlice';
 import registerSlice from './registerReduxSlice/registerSlice';
 import inputSlice from './inputReduxSlice/inputSlice';
-import userSlice from './userReduxSlice/userSlice';
+import userDataSlice from './userDataReduxSlice/userDataSlice';
 
 export const rootReducer = combineReducers({
 	loginReduxStore: loginSlice.reducer,
 	registerReduxStore: registerSlice.reducer,
 	inputReduxStore: inputSlice.reducer,
-	userReduxStore: userSlice.reducer,
+	userDataReduxStore: userDataSlice.reducer,
 });

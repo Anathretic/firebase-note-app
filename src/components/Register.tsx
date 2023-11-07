@@ -4,6 +4,8 @@ import { clearInputValue, getInitialInputValue, setInputValue } from '../redux/i
 
 import { registerSchema } from '../schemas/schemas';
 import { register } from '../firebase/firebaseClient';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebase/firebaseConfig';
 
 import * as yup from 'yup';
 
@@ -20,11 +22,20 @@ export const Register: React.FC = () => {
 
 		try {
 			const { email, password } = await registerSchema.validate(input);
-			const userCredential = await register(email, password);
-			const user = userCredential.user;
+			const response = await register(email, password);
+			const user = response.user;
+			await addDoc(collection(db, 'users'), {
+				uid: user.uid,
+				email: user.email,
+				notes: [
+					{
+						id: 'test-note',
+						title: `Hello there!`,
+						description: `I'm your first note.. Looks like everything works! Enjoy your work ${input.email} :)`,
+					},
+				],
+			});
 			dispatch(clearInputValue());
-			console.log(user);
-			console.log('OK!');
 		} catch (error: unknown) {
 			if (error instanceof yup.ValidationError) {
 				console.log(`Pole: ${error.path}, błąd: ${error.message} `);
@@ -33,8 +44,6 @@ export const Register: React.FC = () => {
 			}
 		}
 	};
-
-	console.log(input);
 
 	return (
 		<div>
