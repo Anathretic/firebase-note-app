@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { LoginAndRegisterState } from '../../models/loginAndRegister.model';
+import { BooleanReduxState } from '../../models/boolean.model';
 
-const initialState: LoginAndRegisterState = {
+const initialState: BooleanReduxState = {
 	value: false,
 };
 
-export const registerSlice = createSlice({
+const registerSlice = createSlice({
 	name: 'register',
 	initialState,
 	reducers: {

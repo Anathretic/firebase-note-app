@@ -49,7 +49,7 @@ export const Register: React.FC = () => {
 		<div>
 			<p>Register</p>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor='email'></label>
+				<label htmlFor='email'>E-mail:</label>
 				<input
 					type='text'
 					id='email'
@@ -59,7 +59,7 @@ export const Register: React.FC = () => {
 					autoComplete='off'
 					onChange={handleInputValue}
 				/>
-				<label htmlFor='password'></label>
+				<label htmlFor='password'>Password:</label>
 				<input
 					type='password'
 					id='password'
@@ -69,7 +69,7 @@ export const Register: React.FC = () => {
 					autoComplete='off'
 					onChange={handleInputValue}
 				/>
-				<label htmlFor='confirmPassword'></label>
+				<label htmlFor='confirmPassword'>Confirm password:</label>
 				<input
 					type='password'
 					id='confirmPassword'
