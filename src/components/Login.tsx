@@ -37,7 +37,7 @@ export const Login: React.FC = () => {
 		<div>
 			<p>Login</p>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor='email'></label>
+				<label htmlFor='email'>E-mail:</label>
 				<input
 					type='text'
 					id='email'
@@ -47,7 +47,7 @@ export const Login: React.FC = () => {
 					autoComplete='off'
 					onChange={handleInputValue}
 				/>
-				<label htmlFor='password'></label>
+				<label htmlFor='password'>Password:</label>
 				<input
 					type='password'
 					id='password'

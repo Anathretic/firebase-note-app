@@ -13,7 +13,7 @@ const initialState: Inputs = {
 	confirmPassword: '',
 };
 
-export const inputSlice = createSlice({
+const inputSlice = createSlice({
 	name: 'input',
 	initialState,
 	reducers: {

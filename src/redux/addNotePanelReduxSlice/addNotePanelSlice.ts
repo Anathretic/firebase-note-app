@@ -6,21 +6,21 @@ const initialState: BooleanReduxState = {
 	value: false,
 };
 
-const loginSlice = createSlice({
-	name: 'login',
+const addNotePanelSlice = createSlice({
+	name: 'addNote',
 	initialState,
 	reducers: {
-		setLogin: state => {
+		showPanel: state => {
 			state.value = true;
 		},
-		setLogout: state => {
+		hidePanel: state => {
 			state.value = false;
 		},
 	},
 });
 
-export const { setLogin, setLogout } = loginSlice.actions;
+export const { showPanel, hidePanel } = addNotePanelSlice.actions;
 
-export const getInitialLoginValue = (state: RootState) => state.loginReduxStore.value;
+export const getInitialAddNotePanelValue = (state: RootState) => state.addNotePanelReduxStore.value;
 
-export default loginSlice;
+export default addNotePanelSlice;

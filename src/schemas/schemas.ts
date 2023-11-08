@@ -21,3 +21,17 @@ export const registerSchema = yup.object({
 });
 
 export const loginSchema = registerSchema.pick(['email', 'password']);
+
+export const noteSchema = yup.object({
+	title: yup
+		.string()
+		.min(3, 'Must be at least 3 characters long!')
+		.max(12, 'Must be less than 12 characters!')
+		.matches(/^[a-zA-Z]+$/, 'Only letters without using spaces!')
+		.required(errorMessage.requiredField),
+	note: yup
+		.string()
+		.min(5, 'Must be at least 5 characters long!')
+		.max(300, 'Must be less than 300 characters!')
+		.required(errorMessage.requiredField),
+});
