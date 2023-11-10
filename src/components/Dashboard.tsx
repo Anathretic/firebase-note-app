@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-import { query, collection, getDocs, where } from 'firebase/firestore';
+import { query, collection, getDocs, where, updateDoc, doc, arrayRemove } from 'firebase/firestore';
 import { auth } from '../firebase/firebaseClient';
 import { db } from '../firebase/firebaseConfig';
 
@@ -34,6 +34,16 @@ export const Dashboard: React.FC = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	const deleteNote = async (data: object, id: string) => {
+		try {
+			await updateDoc(doc(db, 'users', `${user?.uid}`), {
+				notes: arrayRemove({ id, ...data }),
+			});
+		} catch (error: unknown) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<div>
 			<Header />
@@ -48,6 +58,9 @@ export const Dashboard: React.FC = () => {
 						<div>
 							{userDataNotesArray.map(data => (
 								<div key={data.id}>
+									<button type='button' onClick={() => deleteNote(data, data.id)}>
+										X
+									</button>
 									<h3>{data.title}</h3>
 									<span>{data.description}</span>
 								</div>

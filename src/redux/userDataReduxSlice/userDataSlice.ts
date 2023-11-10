@@ -1,15 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-
-interface Note {
-	id: string;
-	title: string;
-	description: string;
-}
-
-interface Data {
-	data: Note[];
-}
+import { Data } from '../../models/note.model';
 
 const initialState: Data = {
 	data: [],
