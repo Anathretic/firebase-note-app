@@ -4,7 +4,7 @@ import { clearInputValue, getInitialInputValue, setInputValue } from '../redux/i
 
 import { registerSchema } from '../schemas/schemas';
 import { register } from '../firebase/firebaseClient';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, setDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 
 import * as yup from 'yup';
@@ -23,8 +23,11 @@ export const Register: React.FC = () => {
 		try {
 			const { email, password } = await registerSchema.validate(input);
 			const response = await register(email, password);
+
 			const user = response.user;
-			await addDoc(collection(db, 'users'), {
+			const usersRef = collection(db, 'users');
+
+			await setDoc(doc(usersRef, `${user.uid}`), {
 				uid: user.uid,
 				email: user.email,
 				notes: [
