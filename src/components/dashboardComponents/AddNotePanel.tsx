@@ -6,7 +6,18 @@ import {
 } from '../../redux/addNoteInputReduxSlice/addNoteInputSlice';
 import { hidePanel } from '../../redux/addNotePanelReduxSlice/addNotePanelSlice';
 
+import uuid from 'react-uuid';
+import { noteSchema } from '../../schemas/schemas';
+
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase/firebaseClient';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../firebase/firebaseConfig';
+
+import * as yup from 'yup';
+
 export const AddNotePanel: React.FC = () => {
+	const [user] = useAuthState(auth);
 	const noteInput = useAppSelector(state => getInitialAddNoteInputValue(state));
 	const dispatch = useAppDispatch();
 
@@ -14,16 +25,35 @@ export const AddNotePanel: React.FC = () => {
 		dispatch(setAddNoteInputValue({ ...noteInput, [e.currentTarget.name]: e.currentTarget.value }));
 	};
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		console.log(e);
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
+		try {
+			const { note, title } = await noteSchema.validate(noteInput);
+
+			await updateDoc(doc(db, 'users', `${user?.uid}`), {
+				notes: arrayUnion({
+					id: uuid(),
+					title: title,
+					description: note,
+				}),
+			});
+
+			dispatch(hidePanel());
+			dispatch(clearAddNoteInputValue());
+		} catch (error: unknown) {
+			if (error instanceof yup.ValidationError) {
+				console.log(`Pole: ${error.path}, błąd: ${error.message} `);
+			} else {
+				console.log(error);
+			}
+		}
 	};
 
 	const handleBack = () => {
 		dispatch(hidePanel());
 		dispatch(clearAddNoteInputValue());
 	};
-
-	console.log(noteInput);
 
 	return (
 		<div>
