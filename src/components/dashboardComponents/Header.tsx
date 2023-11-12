@@ -8,9 +8,11 @@ import { closeRegister } from '../../redux/registerReduxSlice/registerSlice';
 import { clearUserData } from '../../redux/userDataReduxSlice/userDataSlice';
 import { db } from '../../firebase/firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useFetchUserData } from '../../hooks/useFetchUserData';
 
 export const Header: React.FC = () => {
 	const [user] = useAuthState(auth);
+	const [fetchUserData] = useFetchUserData();
 	const dispatch = useAppDispatch();
 
 	const deleteAllNotes = async () => {
@@ -18,6 +20,7 @@ export const Header: React.FC = () => {
 			await updateDoc(doc(db, 'users', `${user?.uid}`), {
 				notes: [],
 			});
+			fetchUserData();
 		} catch (error) {
 			console.log(error);
 		}
