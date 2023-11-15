@@ -4,7 +4,7 @@ import { Login } from './Login';
 import { Register } from './Register';
 
 export const LoginAndRegisterPanel: React.FC = () => {
-	const register = useAppSelector(state => getInitialRegisterValue(state));
+	const registerStatus = useAppSelector(state => getInitialRegisterValue(state));
 
-	return <div>{!register ? <Login /> : <Register />}</div>;
+	return <div>{!registerStatus ? <Login /> : <Register />}</div>;
 };

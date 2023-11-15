@@ -6,19 +6,24 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useAppDispatch } from './reduxHooks';
 
 import { setUserData } from '../redux/userDataReduxSlice/userDataSlice';
+import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 
 export const useFetchUserData = () => {
 	const [user] = useAuthState(auth);
 	const dispatch = useAppDispatch();
 
 	const fetchUserData = async () => {
+		await user?.reload();
 		try {
 			const dataQuery = query(collection(db, 'users'), where('uid', '==', user?.uid));
 			const getData = await getDocs(dataQuery);
 			const userData = getData.docs[0].data();
 			dispatch(setUserData(userData.notes));
 		} catch (err) {
-			console.log(err);
+			if (err instanceof Error) {
+				dispatch(setErrorValue('Something went wrong.. Try again later!'));
+				console.log(err);
+			}
 		}
 	};
 

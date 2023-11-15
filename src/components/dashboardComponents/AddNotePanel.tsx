@@ -1,10 +1,6 @@
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import {
-	clearAddNoteInputValue,
-	getInitialAddNoteInputValue,
-	setAddNoteInputValue,
-} from '../../redux/addNoteInputReduxSlice/addNoteInputSlice';
+import { useAppDispatch } from '../../hooks/reduxHooks';
 import { hidePanel } from '../../redux/addNotePanelReduxSlice/addNotePanelSlice';
+import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
 
 import uuid from 'react-uuid';
 import { noteSchema } from '../../schemas/schemas';
@@ -14,23 +10,23 @@ import { auth } from '../../firebase/firebaseClient';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase/firebaseConfig';
 
-import * as yup from 'yup';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { AddNoteInputs } from '../../models/inputs.model';
 
 export const AddNotePanel: React.FC = () => {
 	const [user] = useAuthState(auth);
-	const noteInput = useAppSelector(state => getInitialAddNoteInputValue(state));
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<AddNoteInputs>({
+		resolver: yupResolver(noteSchema),
+	});
 	const dispatch = useAppDispatch();
 
-	const handleNoteInputValue = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-		dispatch(setAddNoteInputValue({ ...noteInput, [e.currentTarget.name]: e.currentTarget.value }));
-	};
-
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
+	const onSubmit: SubmitHandler<AddNoteInputs> = async ({ note, title }) => {
 		try {
-			const { note, title } = await noteSchema.validate(noteInput);
-
 			await updateDoc(doc(db, 'users', `${user?.uid}`), {
 				notes: arrayUnion({
 					id: uuid(),
@@ -38,45 +34,28 @@ export const AddNotePanel: React.FC = () => {
 					description: note,
 				}),
 			});
-
 			dispatch(hidePanel());
-			dispatch(clearAddNoteInputValue());
-		} catch (error: unknown) {
-			if (error instanceof yup.ValidationError) {
-				console.log(`Pole: ${error.path}, błąd: ${error.message} `);
-			} else {
-				console.log(error);
+		} catch (err) {
+			if (err instanceof Error) {
+				dispatch(setErrorValue('Something went wrong.. Try again later!'));
 			}
 		}
 	};
 
 	const handleBack = () => {
 		dispatch(hidePanel());
-		dispatch(clearAddNoteInputValue());
 	};
 
 	return (
 		<div>
 			<h3>I'm adding your notes!</h3>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit(onSubmit)}>
 				<label htmlFor='title'>Title:</label>
-				<input
-					type='text'
-					name='title'
-					id='title'
-					value={noteInput.title}
-					placeholder='Enter your title..'
-					autoComplete='off'
-					onChange={handleNoteInputValue}
-				/>
+				<input type='text' id='title' placeholder='Enter your title..' autoComplete='off' {...register('title')} />
+				<p>{errors.title?.message}</p>
 				<label htmlFor='note'>Note:</label>
-				<textarea
-					name='note'
-					id='note'
-					value={noteInput.note}
-					placeholder='Enter your note..'
-					autoComplete='off'
-					onChange={handleNoteInputValue}></textarea>
+				<textarea id='note' placeholder='Enter your note..' autoComplete='off' {...register('note')}></textarea>
+				<p>{errors.note?.message}</p>
 				<button type='submit'>Add it!</button>
 				<button type='button' onClick={handleBack}>
 					Go back
