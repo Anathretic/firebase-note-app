@@ -6,5 +6,5 @@ import { Register } from './Register';
 export const LoginAndRegisterPanel: React.FC = () => {
 	const registerStatus = useAppSelector(state => getInitialRegisterValue(state));
 
-	return <div>{!registerStatus ? <Login /> : <Register />}</div>;
+	return <>{!registerStatus ? <Login /> : <Register />}</>;
 };

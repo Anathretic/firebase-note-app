@@ -5,3 +5,102 @@
 	padding: 0;
 	margin: 0;
 }
+
+html,
+body,
+#root,
+.app-container,
+.main-app-container {
+	height: 100%;
+}
+
+body {
+	font-family: 'Nunito', sans-serif;
+	color: #ebebeb;
+	background-color: rgb(20, 20, 20);
+}
+
+.error-popup--shadow,
+.error-popup--box {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.error-popup--shadow {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+.error-popup--box {
+	position: relative;
+	flex-direction: column;
+	padding: 1em;
+	width: 90%;
+	height: 200px;
+	opacity: 0;
+	animation: popup-animation 1s linear forwards;
+}
+
+@keyframes popup-animation {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.white-gradient {
+	background: rgba(245, 245, 245, 0.1);
+	border-radius: 12px;
+	backdrop-filter: blur(5px);
+	-webkit-backdrop-filter: blur(5px);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.error-popup--message {
+	font-size: 1.2em;
+	text-align: center;
+}
+
+.error-popup--button {
+	margin-top: 1em;
+	padding: 0.5em 2em;
+	color: #ebebeb;
+	background-color: #39724a;
+	font-family: 'Nunito', sans-serif;
+	font-size: 1em;
+	border: none;
+	border-radius: 8px;
+	transition: background-color 0.3s;
+	cursor: pointer;
+}
+
+.error-popup--button:hover {
+	background-color: #013a20;
+}
+
+@media screen and (min-width: 768px) {
+	.error-popup--box {
+		width: 70%;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	.error-popup--box {
+		width: 50%;
+	}
+
+	.error-popup--button {
+		margin-top: 2em;
+	}
+}
+
+@media screen and (min-width: 1536px) {
+	.error-popup--box {
+		width: 35%;
+	}
+}

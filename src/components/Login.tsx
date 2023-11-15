@@ -36,33 +36,51 @@ export const Login: React.FC = () => {
 	};
 
 	return (
-		<div>
-			<p>Login</p>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<label htmlFor='email'>E-mail:</label>
-				<input type='text' id='email' placeholder='Enter your e-mail..' autoComplete='off' {...register('email')} />
-				<p>{errors.email?.message}</p>
-				<label htmlFor='password'>Password:</label>
-				<input
-					type='password'
-					id='password'
-					placeholder='Enter your password..'
-					autoComplete='off'
-					{...register('password')}
-				/>
-				<p>{errors.password?.message}</p>
-				<input type='submit' value='Login' />
-				<p>
-					Don't have an account?{' '}
-					<button
-						type='button'
-						onClick={() => {
-							dispatch(openRegister());
-						}}>
-						Register
-					</button>
-				</p>
-			</form>
+		<div className='login-container'>
+			<div className='login-container--box'>
+				<p className='login-container--title'>Login</p>
+				<form className='login-container--form' onSubmit={handleSubmit(onSubmit)}>
+					<div className='login-container--form-box'>
+						<label className='login-container--label' htmlFor='email'>
+							E-mail:
+						</label>
+						<input
+							className='login-container--input'
+							type='text'
+							id='email'
+							placeholder='Enter your e-mail..'
+							autoComplete='off'
+							{...register('email')}
+						/>
+						<p className='login-container--input-error'>{errors.email?.message}</p>
+					</div>
+					<div className='login-container--form-box'>
+						<label className='login-container--label' htmlFor='password'>
+							Password:
+						</label>
+						<input
+							className='login-container--input'
+							type='password'
+							id='password'
+							placeholder='Enter your password..'
+							autoComplete='off'
+							{...register('password')}
+						/>
+						<p className='login-container--input-error'>{errors.password?.message}</p>
+					</div>
+					<input type='submit' value='Login' />
+					<p>
+						Don't have an account?{' '}
+						<button
+							type='button'
+							onClick={() => {
+								dispatch(openRegister());
+							}}>
+							Register
+						</button>
+					</p>
+				</form>
+			</div>
 		</div>
 	);
 };

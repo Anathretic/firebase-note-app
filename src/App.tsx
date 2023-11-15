@@ -27,18 +27,18 @@ export const App: React.FC = () => {
 	}, []);
 
 	return (
-		<div>
+		<div className='app-container'>
 			{error && (
-				<div>
-					<div>
-						<p>{error}</p>
-						<button type='button' onClick={() => dispatch(clearErrorValue())}>
-							x
+				<div className='error-popup--shadow'>
+					<div className='error-popup--box white-gradient'>
+						<p className='error-popup--message'>{error}</p>
+						<button className='error-popup--button' type='button' onClick={() => dispatch(clearErrorValue())}>
+							Try again
 						</button>
 					</div>
 				</div>
 			)}
-			<div>{!login ? <LoginAndRegisterPanel /> : <Dashboard />}</div>
+			<div className='main-app-container'>{!login ? <LoginAndRegisterPanel /> : <Dashboard />}</div>
 		</div>
 	);
 };
