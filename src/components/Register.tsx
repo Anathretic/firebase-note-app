@@ -1,28 +1,35 @@
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import { useAppDispatch } from '../hooks/reduxHooks';
 import { closeRegister } from '../redux/registerReduxSlice/registerSlice';
-import { clearInputValue, getInitialInputValue, setInputValue } from '../redux/inputReduxSlice/inputSlice';
+import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 
 import { registerSchema } from '../schemas/schemas';
-import { register } from '../firebase/firebaseClient';
+import { auth, registerUser } from '../firebase/firebaseClient';
 import { collection, setDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 
-import * as yup from 'yup';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { RegisterInputs } from '../models/inputs.model';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { updateProfile } from 'firebase/auth';
 
 export const Register: React.FC = () => {
-	const input = useAppSelector(state => getInitialInputValue(state));
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm<RegisterInputs>({
+		resolver: yupResolver(registerSchema),
+	});
 	const dispatch = useAppDispatch();
 
-	const handleInputValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-		dispatch(setInputValue({ ...input, [e.currentTarget.name]: e.currentTarget.value }));
-	};
-
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
+	const onSubmit: SubmitHandler<RegisterInputs> = async ({ name, email, password }) => {
 		try {
-			const { email, password } = await registerSchema.validate(input);
-			const response = await register(email, password);
+			const response = await registerUser(email, password);
+
+			const currentUser = auth.currentUser;
+			if (currentUser) {
+				await updateProfile(currentUser, { displayName: name });
+			}
 
 			const user = response.user;
 			const usersRef = collection(db, 'users');
@@ -34,16 +41,17 @@ export const Register: React.FC = () => {
 					{
 						id: 'test-note',
 						title: `Hello there!`,
-						description: `I'm your first note.. Looks like everything works! Enjoy your work ${input.email} :)`,
+						description: `I'm your first note.. Looks like everything works! Enjoy your work ${user.displayName}! :)`,
 					},
 				],
 			});
-			dispatch(clearInputValue());
-		} catch (error: unknown) {
-			if (error instanceof yup.ValidationError) {
-				console.log(`Pole: ${error.path}, błąd: ${error.message} `);
-			} else {
-				console.log(error);
+		} catch (err) {
+			if (err instanceof Error) {
+				if (err.message.includes('email-already-in-use')) {
+					dispatch(setErrorValue('E-mail already in use!'));
+				} else {
+					dispatch(setErrorValue('Server is down.. We are working on it!'));
+				}
 			}
 		}
 	};
@@ -51,37 +59,31 @@ export const Register: React.FC = () => {
 	return (
 		<div>
 			<p>Register</p>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit(onSubmit)}>
+				<label htmlFor='name'>Name:</label>
+				<input type='text' id='name' placeholder='Enter your name..' autoComplete='off' {...register('name')} />
+				<p>{errors.name?.message}</p>
 				<label htmlFor='email'>E-mail:</label>
-				<input
-					type='text'
-					id='email'
-					name='email'
-					value={input.email}
-					placeholder='Enter your e-mail..'
-					autoComplete='off'
-					onChange={handleInputValue}
-				/>
+				<input type='text' id='email' placeholder='Enter your e-mail..' autoComplete='off' {...register('email')} />
+				<p>{errors.email?.message}</p>
 				<label htmlFor='password'>Password:</label>
 				<input
 					type='password'
 					id='password'
-					name='password'
-					value={input.password}
 					placeholder='Enter your password..'
 					autoComplete='off'
-					onChange={handleInputValue}
+					{...register('password')}
 				/>
+				<p>{errors.password?.message}</p>
 				<label htmlFor='confirmPassword'>Confirm password:</label>
 				<input
 					type='password'
 					id='confirmPassword'
-					name='confirmPassword'
-					value={input.confirmPassword}
 					placeholder='Confirm your password..'
 					autoComplete='off'
-					onChange={handleInputValue}
+					{...register('confirmPassword')}
 				/>
+				<p>{errors.confirmPassword?.message}</p>
 				<input type='submit' value='Register' />
 				<p>
 					Already have an account?{' '}
@@ -89,7 +91,6 @@ export const Register: React.FC = () => {
 						type='button'
 						onClick={() => {
 							dispatch(closeRegister());
-							dispatch(clearInputValue());
 						}}>
 						Login
 					</button>

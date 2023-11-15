@@ -5,10 +5,17 @@ YupPassword(yup);
 const errorMessage = { requiredField: 'This field is required!' };
 
 export const registerSchema = yup.object({
+	name: yup
+		.string()
+		.min(3, 'Name should consists of at least 3 letters!')
+		.max(16, 'Name should be a maximum of 16 characters!')
+		.minUppercase(1, "You should start with a capital letter, shouldn't you?")
+		.matches(/^[a-zA-Z]+$/, 'Only letters without using spaces!')
+		.required(errorMessage.requiredField),
 	email: yup.string().email('Enter a valid e-mail!').required(errorMessage.requiredField),
 	password: yup
 		.string()
-		.min(8, 'Password is too short! - should be 8 chars minimum.')
+		.min(8, 'The password consists of a minimum of 8 characters!')
 		.minLowercase(1, 'Password must contain at least 1 lower case letter!')
 		.minUppercase(1, 'Password must contain at least 1 upper case letter!')
 		.minNumbers(1, 'Password must contain at least 1 number!')

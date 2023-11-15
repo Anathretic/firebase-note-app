@@ -3,14 +3,14 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 
 export const auth = getAuth(app);
 
-export const register = (email: string, password: string) => {
+export const registerUser = (email: string, password: string) => {
 	return createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const login = (email: string, password: string) => {
+export const loginUser = (email: string, password: string) => {
 	return signInWithEmailAndPassword(auth, email, password);
 };
 
-export const logout = () => {
+export const logoutUser = () => {
 	return signOut(auth);
 };
