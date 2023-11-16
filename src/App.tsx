@@ -8,6 +8,7 @@ import { Dashboard } from './components/Dashboard';
 import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
 import { getInitialLoginValue, setLogin, setLogout } from './redux/loginReduxSlice/loginSlice';
 import { clearErrorValue, getInitialErrorPopupValue } from './redux/errorPopupReduxSlice/errorPopupSlice';
+import { Header } from './components/dashboardComponents/Header';
 
 export const App: React.FC = () => {
 	const login = useAppSelector(state => getInitialLoginValue(state));
@@ -27,7 +28,7 @@ export const App: React.FC = () => {
 	}, []);
 
 	return (
-		<div className='app-container'>
+		<div className={`app ${error && 'scroll-block'}`}>
 			{error && (
 				<div className='error-popup--shadow'>
 					<div className='error-popup--box white-gradient'>
@@ -38,7 +39,8 @@ export const App: React.FC = () => {
 					</div>
 				</div>
 			)}
-			<div className='main-app-container'>{!login ? <LoginAndRegisterPanel /> : <Dashboard />}</div>
+			<Header />
+			<div className='app-container'>{!login ? <LoginAndRegisterPanel /> : <Dashboard />}</div>
 		</div>
 	);
 };

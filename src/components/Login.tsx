@@ -37,15 +37,17 @@ export const Login: React.FC = () => {
 
 	return (
 		<div className='login-container'>
-			<div className='login-container--box'>
-				<p className='login-container--title'>Login</p>
+			<div className='login-container--box white-gradient'>
+				<h2 className='login-container--title'>Login</h2>
+				<hr className='login-container--strap' />
 				<form className='login-container--form' onSubmit={handleSubmit(onSubmit)}>
 					<div className='login-container--form-box'>
 						<label className='login-container--label' htmlFor='email'>
 							E-mail:
 						</label>
 						<input
-							className='login-container--input'
+							aria-invalid={errors.email ? true : false}
+							className='login-container--input blue-gradient'
 							type='text'
 							id='email'
 							placeholder='Enter your e-mail..'
@@ -59,6 +61,7 @@ export const Login: React.FC = () => {
 							Password:
 						</label>
 						<input
+							aria-invalid={errors.password ? true : false}
 							className='login-container--input'
 							type='password'
 							id='password'
@@ -68,18 +71,21 @@ export const Login: React.FC = () => {
 						/>
 						<p className='login-container--input-error'>{errors.password?.message}</p>
 					</div>
-					<input type='submit' value='Login' />
-					<p>
-						Don't have an account?{' '}
-						<button
-							type='button'
-							onClick={() => {
-								dispatch(openRegister());
-							}}>
-							Register
-						</button>
-					</p>
+					<div className='login-container--form-box'>
+						<input className='login-container--form-submit' type='submit' value='Login' />
+					</div>
 				</form>
+				<hr className='login-container--strap' />
+				<div className='login-container--form-toggle'>
+					<p>Don't have an account?</p>
+					<button
+						type='button'
+						onClick={() => {
+							dispatch(openRegister());
+						}}>
+						Register
+					</button>
+				</div>
 			</div>
 		</div>
 	);
