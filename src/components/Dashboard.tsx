@@ -3,7 +3,6 @@ import { useAppSelector } from '../hooks/reduxHooks';
 
 import { getInitialAddNotePanelValue } from '../redux/addNotePanelReduxSlice/addNotePanelSlice';
 
-import { Header } from './dashboardComponents/Header';
 import { AddNotePanel } from './dashboardComponents/AddNotePanel';
 import { getInitialLoginValue } from '../redux/loginReduxSlice/loginSlice';
 
@@ -22,7 +21,6 @@ export const Dashboard: React.FC = () => {
 
 	return (
 		<div>
-			<Header />
 			<div>{addNotePanelStatus ? <AddNotePanel /> : <NoteItem />}</div>
 		</div>
 	);

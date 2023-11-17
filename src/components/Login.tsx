@@ -2,6 +2,7 @@ import { useAppDispatch } from '../hooks/reduxHooks';
 import { openRegister } from '../redux/registerReduxSlice/registerSlice';
 import { setLogin } from '../redux/loginReduxSlice/loginSlice';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
+import { scrollToTop } from '../utils/scrollToTop';
 
 import { loginSchema } from '../schemas/schemas';
 import { loginUser } from '../firebase/firebaseClient';
@@ -81,6 +82,7 @@ export const Login: React.FC = () => {
 					<button
 						type='button'
 						onClick={() => {
+							scrollToTop();
 							dispatch(openRegister());
 						}}>
 						Register

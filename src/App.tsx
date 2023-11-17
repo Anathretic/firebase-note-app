@@ -8,7 +8,7 @@ import { Dashboard } from './components/Dashboard';
 import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
 import { getInitialLoginValue, setLogin, setLogout } from './redux/loginReduxSlice/loginSlice';
 import { clearErrorValue, getInitialErrorPopupValue } from './redux/errorPopupReduxSlice/errorPopupSlice';
-import { Header } from './components/dashboardComponents/Header';
+import { Header } from './components/Header';
 
 export const App: React.FC = () => {
 	const login = useAppSelector(state => getInitialLoginValue(state));

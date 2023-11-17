@@ -1,6 +1,7 @@
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { closeRegister } from '../redux/registerReduxSlice/registerSlice';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
+import { scrollToTop } from '../utils/scrollToTop';
 
 import { registerSchema } from '../schemas/schemas';
 import { auth, registerUser } from '../firebase/firebaseClient';
@@ -132,6 +133,7 @@ export const Register: React.FC = () => {
 					<button
 						type='button'
 						onClick={() => {
+							scrollToTop();
 							dispatch(closeRegister());
 						}}>
 						Login
