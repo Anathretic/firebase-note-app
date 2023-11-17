@@ -51,14 +51,6 @@ body {
 	margin-top: 1em;
 }
 
-.error-popup--button:hover,
-.login-container--form-submit:hover,
-.login-container--form-toggle button:hover,
-.register-container--form-submit:hover,
-.register-container--form-toggle button:hover {
-	background-color: #013a20;
-}
-
 .error-popup--shadow {
 	position: fixed;
 	width: 100%;
@@ -134,10 +126,6 @@ body {
 	border-radius: 8px;
 	cursor: pointer;
 	transition: background-color 0.3s;
-}
-
-.header--button:hover {
-	background-color: #39724a;
 }
 
 .header--button-icon {
@@ -252,6 +240,49 @@ body {
 	padding-top: 1em;
 }
 
+.dashboard-container {
+	padding: 1em;
+}
+
+.notes-array--container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding: 1em;
+}
+
+.notes-array--item {
+	padding: 1em;
+	margin: 1em 0;
+	width: 100%;
+	height: 260px;
+	overflow: auto;
+}
+
+.notes-array--header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-bottom: 0.75em;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.notes-array--button {
+	background-color: transparent;
+	color: #ebebeb;
+	line-height: 2px;
+	font-size: 28px;
+	border: none;
+	transition: color 0.3s;
+	cursor: pointer;
+}
+
+.notes-array--text {
+	padding-top: 0.5em;
+	overflow-wrap: break-word;
+	white-space: pre-line;
+}
+
 .footer {
 	padding: 1em 1em 0;
 	border-top: 1px solid rgba(255, 255, 255, 0.3);
@@ -282,6 +313,10 @@ body {
 	.login-container--input,
 	.register-container--input {
 		width: 90%;
+	}
+
+	.notes-array--item {
+		width: 300px;
 	}
 }
 
@@ -329,9 +364,32 @@ body {
 	.register-container--title {
 		font-size: 1.7em;
 	}
+
+	.notes-array--container {
+		justify-content: center;
+		flex-direction: row;
+		flex-wrap: wrap;
+		row-gap: 1;
+	}
+
+	.notes-array--item {
+		margin: 1em;
+	}
 }
 
 @media screen and (min-width: 1024px) {
+	.error-popup--button:hover,
+	.login-container--form-submit:hover,
+	.login-container--form-toggle button:hover,
+	.register-container--form-submit:hover,
+	.register-container--form-toggle button:hover {
+		background-color: #013a20;
+	}
+
+	.header--button:hover {
+		background-color: #39724a;
+	}
+
 	.error-popup--box,
 	.login-container,
 	.register-container {
@@ -361,8 +419,42 @@ body {
 		font-size: 0.9em;
 	}
 
+	.dashboard-container {
+		padding: 3em;
+	}
+
+	.notes-array--item::-webkit-scrollbar {
+		width: 8px;
+		height: 5px;
+	}
+
+	.notes-array--item::-webkit-scrollbar-thumb {
+		background: #ebebeb;
+		border-radius: 8px;
+	}
+
+	.notes-array--item::-webkit-scrollbar-track {
+		background: transparent;
+	}
+
+	.notes-array--item {
+		scrollbar-face-color: #ebebeb;
+		scrollbar-track-color: transparent;
+	}
+
+	.notes-array--button:hover {
+		color: #39724a;
+	}
+
 	.footer--text {
 		padding: 1em 1em 0;
+	}
+}
+
+@media screen and (min-width: 1120px) {
+	.notes-array--item {
+		width: 350px;
+		height: 400px;
 	}
 }
 

@@ -7,7 +7,7 @@ import { AddNotePanel } from './dashboardComponents/AddNotePanel';
 import { getInitialLoginValue } from '../redux/loginReduxSlice/loginSlice';
 
 import { useFetchUserData } from '../hooks/useFetchUserData';
-import { NoteItem } from './dashboardComponents/NoteItem';
+import { NotesArray } from './dashboardComponents/NotesArray';
 
 export const Dashboard: React.FC = () => {
 	const [fetchUserData] = useFetchUserData();
@@ -19,9 +19,5 @@ export const Dashboard: React.FC = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [addNotePanelStatus, loginStatus]);
 
-	return (
-		<div>
-			<div>{addNotePanelStatus ? <AddNotePanel /> : <NoteItem />}</div>
-		</div>
-	);
+	return <div className='dashboard-container'>{addNotePanelStatus ? <AddNotePanel /> : <NotesArray />}</div>;
 };
