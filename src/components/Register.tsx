@@ -57,36 +57,78 @@ export const Register: React.FC = () => {
 	};
 
 	return (
-		<div>
-			<p>Register</p>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<label htmlFor='name'>Name:</label>
-				<input type='text' id='name' placeholder='Enter your name..' autoComplete='off' {...register('name')} />
-				<p>{errors.name?.message}</p>
-				<label htmlFor='email'>E-mail:</label>
-				<input type='text' id='email' placeholder='Enter your e-mail..' autoComplete='off' {...register('email')} />
-				<p>{errors.email?.message}</p>
-				<label htmlFor='password'>Password:</label>
-				<input
-					type='password'
-					id='password'
-					placeholder='Enter your password..'
-					autoComplete='off'
-					{...register('password')}
-				/>
-				<p>{errors.password?.message}</p>
-				<label htmlFor='confirmPassword'>Confirm password:</label>
-				<input
-					type='password'
-					id='confirmPassword'
-					placeholder='Confirm your password..'
-					autoComplete='off'
-					{...register('confirmPassword')}
-				/>
-				<p>{errors.confirmPassword?.message}</p>
-				<input type='submit' value='Register' />
-				<p>
-					Already have an account?{' '}
+		<div className='register-container'>
+			<div className='register-container--box white-gradient'>
+				<h2 className='register-container--title'>Register</h2>
+				<hr className='register-container--strap' />
+				<form className='register-container--form' onSubmit={handleSubmit(onSubmit)}>
+					<div className='register-container--form-box'>
+						<label className='register-container--label' htmlFor='name'>
+							Name:
+						</label>
+						<input
+							aria-invalid={errors.name ? true : false}
+							className='register-container--input'
+							type='text'
+							id='name'
+							placeholder='Enter your name..'
+							autoComplete='off'
+							{...register('name')}
+						/>
+						<p className='register-container--input-error'>{errors.name?.message}</p>
+					</div>
+					<div className='register-container--form-box'>
+						<label className='register-container--label' htmlFor='email'>
+							E-mail:
+						</label>
+						<input
+							aria-invalid={errors.email ? true : false}
+							className='register-container--input'
+							type='text'
+							id='email'
+							placeholder='Enter your e-mail..'
+							autoComplete='off'
+							{...register('email')}
+						/>
+						<p className='register-container--input-error'>{errors.email?.message}</p>
+					</div>
+					<div className='register-container--form-box'>
+						<label className='register-container--label' htmlFor='password'>
+							Password:
+						</label>
+						<input
+							aria-invalid={errors.password ? true : false}
+							className='register-container--input'
+							type='password'
+							id='password'
+							placeholder='Enter your password..'
+							autoComplete='off'
+							{...register('password')}
+						/>
+						<p className='register-container--input-error'>{errors.password?.message}</p>
+					</div>
+					<div className='register-container--form-box'>
+						<label className='register-container--label' htmlFor='confirmPassword'>
+							Confirm password:
+						</label>
+						<input
+							aria-invalid={errors.confirmPassword ? true : false}
+							className='register-container--input'
+							type='password'
+							id='confirmPassword'
+							placeholder='Confirm your password..'
+							autoComplete='off'
+							{...register('confirmPassword')}
+						/>
+						<p className='register-container--input-error'>{errors.confirmPassword?.message}</p>
+					</div>
+					<div className='register-container--form-box'>
+						<input className='register-container--form-submit' type='submit' value='Register' />
+					</div>
+				</form>
+				<hr className='register-container--strap' />
+				<div className='register-container--form-toggle'>
+					<p>Already have an account? </p>
 					<button
 						type='button'
 						onClick={() => {
@@ -94,8 +136,8 @@ export const Register: React.FC = () => {
 						}}>
 						Login
 					</button>
-				</p>
-			</form>
+				</div>
+			</div>
 		</div>
 	);
 };

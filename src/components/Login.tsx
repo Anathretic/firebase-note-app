@@ -47,7 +47,7 @@ export const Login: React.FC = () => {
 						</label>
 						<input
 							aria-invalid={errors.email ? true : false}
-							className='login-container--input blue-gradient'
+							className='login-container--input'
 							type='text'
 							id='email'
 							placeholder='Enter your e-mail..'
