@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { getInitialUserDataValue } from '../../redux/userDataReduxSlice/userDataSlice';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
 
-import { TiDeleteOutline } from "react-icons/ti";
+import { TiDeleteOutline } from 'react-icons/ti';
 
 export const NotesArray: React.FC = () => {
 	const [user] = useAuthState(auth);
@@ -31,18 +31,23 @@ export const NotesArray: React.FC = () => {
 	};
 
 	return (
-		<div className='notes-array--container'>
-			{userDataNotesArray.map(data => (
-				<div className='notes-array--item white-gradient' key={data.id}>
-					<div className='notes-array--header'>
-						<h3 className='notes-array--title'>{data.title}</h3>
-						<button className='notes-array--button' type='button' onClick={() => deleteNote(data, data.id)}>
-							<TiDeleteOutline />
-						</button>
+		<>
+			<div className='notes-array--username'>
+				<p>{user?.displayName}</p>
+			</div>
+			<div className='notes-array--container'>
+				{userDataNotesArray.map(data => (
+					<div className='notes-array--item white-gradient' key={data.id}>
+						<div className='notes-array--header'>
+							<h3 className='notes-array--title'>{data.title}</h3>
+							<button className='notes-array--button' type='button' onClick={() => deleteNote(data, data.id)}>
+								<TiDeleteOutline />
+							</button>
+						</div>
+						<div className='notes-array--text'>{data.description}</div>
 					</div>
-					<div className='notes-array--text'>{data.description}</div>
-				</div>
-			))}
-		</div>
+				))}
+			</div>
+		</>
 	);
 };

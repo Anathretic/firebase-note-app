@@ -13,6 +13,7 @@ import { db } from '../../firebase/firebaseConfig';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { AddNoteInputs } from '../../models/inputs.model';
+import { scrollToTop } from '../../utils/scrollToTop';
 
 export const AddNotePanel: React.FC = () => {
 	const [user] = useAuthState(auth);
@@ -34,7 +35,7 @@ export const AddNotePanel: React.FC = () => {
 					description: note,
 				}),
 			});
-			dispatch(hidePanel());
+			handleBack();
 		} catch (err) {
 			if (err instanceof Error) {
 				dispatch(setErrorValue('Something went wrong.. Try again later!'));
@@ -43,24 +44,54 @@ export const AddNotePanel: React.FC = () => {
 	};
 
 	const handleBack = () => {
+		scrollToTop();
 		dispatch(hidePanel());
 	};
 
 	return (
-		<div>
-			<h3>I'm adding your notes!</h3>
-			<form onSubmit={handleSubmit(onSubmit)}>
-				<label htmlFor='title'>Title:</label>
-				<input type='text' id='title' placeholder='Enter your title..' autoComplete='off' {...register('title')} />
-				<p>{errors.title?.message}</p>
-				<label htmlFor='note'>Note:</label>
-				<textarea id='note' placeholder='Enter your note..' autoComplete='off' {...register('note')}></textarea>
-				<p>{errors.note?.message}</p>
-				<button type='submit'>Add it!</button>
-				<button type='button' onClick={handleBack}>
-					Go back
-				</button>
-			</form>
+		<div className='add-note-container'>
+			<div className='add-note-container--box white-gradient'>
+				<h3 className='add-note-container--title'>Add note!</h3>
+				<hr className='add-note-container--strap' />
+				<form className='add-note-container--form' onSubmit={handleSubmit(onSubmit)}>
+					<div className='add-note-container--form-box'>
+						<label className='add-note-container--label' htmlFor='title'>
+							Title:
+						</label>
+						<input
+							aria-invalid={errors.title ? true : false}
+							className='add-note-container--input'
+							type='text'
+							id='title'
+							placeholder='Enter your title..'
+							autoComplete='off'
+							{...register('title')}
+						/>
+						<p className='add-note-container--error'>{errors.title?.message}</p>
+					</div>
+					<div className='add-note-container--form-box'>
+						<label className='add-note-container--label' htmlFor='note'>
+							Note:
+						</label>
+						<textarea
+							aria-invalid={errors.note ? true : false}
+							className='add-note-container--textarea'
+							id='note'
+							placeholder='Enter your note..'
+							autoComplete='off'
+							{...register('note')}></textarea>
+						<p className='add-note-container--error'>{errors.note?.message}</p>
+					</div>
+					<div className='add-note-container--button-box'>
+						<button className='add-note-container--form-submit' type='submit'>
+							Add
+						</button>
+						<button className='add-note-container--button' type='button' onClick={handleBack}>
+							Back
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 };
