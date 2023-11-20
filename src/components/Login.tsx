@@ -1,15 +1,15 @@
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import { loginUser } from '../firebase/firebaseClient';
+
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { openRegister } from '../redux/registerReduxSlice/registerSlice';
 import { setLogin } from '../redux/loginReduxSlice/loginSlice';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 import { scrollToTop } from '../utils/scrollToTop';
-
 import { loginSchema } from '../schemas/schemas';
-import { loginUser } from '../firebase/firebaseClient';
-
-import { useForm, SubmitHandler } from 'react-hook-form';
 import { LoginInputs } from '../models/inputs.model';
-import { yupResolver } from '@hookform/resolvers/yup';
 
 export const Login: React.FC = () => {
 	const {

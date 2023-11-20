@@ -1,17 +1,17 @@
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { collection, setDoc, doc } from 'firebase/firestore';
+import { updateProfile } from 'firebase/auth';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import { auth, registerUser } from '../firebase/firebaseClient';
+import { db } from '../firebase/firebaseConfig';
+
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { closeRegister } from '../redux/registerReduxSlice/registerSlice';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 import { scrollToTop } from '../utils/scrollToTop';
-
 import { registerSchema } from '../schemas/schemas';
-import { auth, registerUser } from '../firebase/firebaseClient';
-import { collection, setDoc, doc } from 'firebase/firestore';
-import { db } from '../firebase/firebaseConfig';
-
-import { useForm, SubmitHandler } from 'react-hook-form';
 import { RegisterInputs } from '../models/inputs.model';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { updateProfile } from 'firebase/auth';
 
 export const Register: React.FC = () => {
 	const {

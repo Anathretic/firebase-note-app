@@ -357,6 +357,39 @@ body {
 	color: #39724a;
 }
 
+.notfound {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	padding: 1em;
+}
+
+.notfound--img {
+	width: 90%;
+}
+
+.notfound--credits {
+	color: #ebebeb;
+	font-size: 0.8em;
+}
+
+.notfound--btn {
+	padding: 0.75em 5em;
+	margin: 2em 1em;
+	background-color: #39724a;
+	color: #ebebeb;
+	text-decoration: none;
+	border-radius: 8px;
+	transition: background-color 0.3s;
+}
+
+.notfound--btn:hover {
+	background-color: #013a20;
+}
+
 @media screen and (min-width: 400px) {
 	.login-container--input,
 	.register-container--input,
@@ -388,6 +421,10 @@ body {
 
 	.footer--icon {
 		margin: 1em;
+	}
+
+	.notfound--img {
+		width: 80%;
 	}
 }
 
@@ -442,6 +479,14 @@ body {
 
 	.notes-array--item {
 		margin: 1em;
+	}
+
+	.notfound--credits {
+		font-size: 1em;
+	}
+
+	.notfound--img {
+		width: 70%;
 	}
 }
 
@@ -527,6 +572,19 @@ body {
 
 	.footer--text {
 		padding: 1em 1em 0;
+	}
+
+	.notfound {
+		padding-bottom: 5em;
+	}
+
+	.notfound--img {
+		width: 50%;
+	}
+
+	.notfound--btn {
+		padding: 1em 4em;
+		font-size: 1.2em;
 	}
 }
 

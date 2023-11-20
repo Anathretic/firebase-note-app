@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
-import { useAppSelector } from '../hooks/reduxHooks';
 
-import { getInitialAddNotePanelValue } from '../redux/addNotePanelReduxSlice/addNotePanelSlice';
-
-import { AddNotePanel } from './dashboardComponents/AddNotePanel';
-import { getInitialLoginValue } from '../redux/loginReduxSlice/loginSlice';
-
-import { useFetchUserData } from '../hooks/useFetchUserData';
 import { NotesArray } from './dashboardComponents/NotesArray';
+import { AddNotePanel } from './dashboardComponents/AddNotePanel';
+
+import { useAppSelector } from '../hooks/reduxHooks';
+import { useFetchUserData } from '../hooks/useFetchUserData';
+import { getInitialAddNotePanelValue } from '../redux/addNotePanelReduxSlice/addNotePanelSlice';
+import { getInitialLoginValue } from '../redux/loginReduxSlice/loginSlice';
 
 export const Dashboard: React.FC = () => {
 	const [fetchUserData] = useFetchUserData();

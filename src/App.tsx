@@ -2,13 +2,14 @@ import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase/firebaseClient';
 
+import { Header } from './components/Header';
 import { LoginAndRegisterPanel } from './components/LoginAndRegisterPanel';
 import { Dashboard } from './components/Dashboard';
+import { Footer } from './components/Footer';
 
 import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
 import { getInitialLoginValue, setLogin, setLogout } from './redux/loginReduxSlice/loginSlice';
 import { clearErrorValue, getInitialErrorPopupValue } from './redux/errorPopupReduxSlice/errorPopupSlice';
-import { Header } from './components/Header';
 
 export const App: React.FC = () => {
 	const login = useAppSelector(state => getInitialLoginValue(state));
@@ -40,7 +41,8 @@ export const App: React.FC = () => {
 				</div>
 			)}
 			<Header />
-			<div className='app-container'>{!login ? <LoginAndRegisterPanel /> : <Dashboard />}</div>
+			<main className='app-container'>{!login ? <LoginAndRegisterPanel /> : <Dashboard />}</main>
+			{!login && <Footer />}
 		</div>
 	);
 };

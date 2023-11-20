@@ -1,21 +1,20 @@
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { doc, updateDoc } from 'firebase/firestore';
 import { auth, logoutUser } from '../firebase/firebaseClient';
-import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import { db } from '../firebase/firebaseConfig';
 
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import { useFetchUserData } from '../hooks/useFetchUserData';
 import { showPanel } from '../redux/addNotePanelReduxSlice/addNotePanelSlice';
 import { getInitialLoginValue, setLogout } from '../redux/loginReduxSlice/loginSlice';
 import { closeRegister } from '../redux/registerReduxSlice/registerSlice';
 import { clearUserData } from '../redux/userDataReduxSlice/userDataSlice';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
-
-import { db } from '../firebase/firebaseConfig';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useFetchUserData } from '../hooks/useFetchUserData';
+import { scrollToTop } from '../utils/scrollToTop';
 
 import { FaPlus } from 'react-icons/fa6';
 import { FaTrashAlt, FaRegStickyNote } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
-import { scrollToTop } from '../utils/scrollToTop';
 
 export const Header: React.FC = () => {
 	const [user] = useAuthState(auth);
@@ -45,7 +44,7 @@ export const Header: React.FC = () => {
 	};
 
 	return (
-		<div className='header'>
+		<header className='header'>
 			<div className='header-box'>
 				<h1 className='header--title'>
 					<FaRegStickyNote className='header--title-icon' /> NoteApp
@@ -72,6 +71,6 @@ export const Header: React.FC = () => {
 					)}
 				</div>
 			</div>
-		</div>
+		</header>
 	);
 };

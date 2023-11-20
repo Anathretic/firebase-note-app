@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import YupPassword from 'yup-password';
+
 YupPassword(yup);
 
 const errorMessage = { requiredField: 'This field is required!' };

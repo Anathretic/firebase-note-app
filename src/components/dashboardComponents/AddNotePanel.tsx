@@ -1,19 +1,18 @@
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
+import { auth } from '../../firebase/firebaseClient';
+import { db } from '../../firebase/firebaseConfig';
+
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { hidePanel } from '../../redux/addNotePanelReduxSlice/addNotePanelSlice';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
-
-import uuid from 'react-uuid';
 import { noteSchema } from '../../schemas/schemas';
-
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../firebase/firebaseClient';
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../firebase/firebaseConfig';
-
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { AddNoteInputs } from '../../models/inputs.model';
 import { scrollToTop } from '../../utils/scrollToTop';
+
+import uuid from 'react-uuid';
 
 export const AddNotePanel: React.FC = () => {
 	const [user] = useAuthState(auth);

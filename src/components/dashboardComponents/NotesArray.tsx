@@ -1,8 +1,8 @@
-import { arrayRemove, doc, updateDoc } from 'firebase/firestore';
-import { db } from '../../firebase/firebaseConfig';
-import { auth } from '../../firebase/firebaseClient';
-
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { arrayRemove, doc, updateDoc } from 'firebase/firestore';
+import { auth } from '../../firebase/firebaseClient';
+import { db } from '../../firebase/firebaseConfig';
+
 import { useFetchUserData } from '../../hooks/useFetchUserData';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 

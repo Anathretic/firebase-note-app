@@ -1,10 +1,9 @@
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 import { auth } from '../firebase/firebaseClient';
 
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useAppDispatch } from './reduxHooks';
-
 import { setUserData } from '../redux/userDataReduxSlice/userDataSlice';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 
