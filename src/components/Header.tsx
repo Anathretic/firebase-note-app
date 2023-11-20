@@ -30,7 +30,7 @@ export const Header: React.FC = () => {
 			fetchUserData();
 		} catch (err) {
 			if (err instanceof Error) {
-				dispatch(setErrorValue('Something went wrong.. Try again later!'));
+				dispatch(setErrorValue('Something went wrong.. Refresh!'));
 			}
 		}
 	};
@@ -45,27 +45,27 @@ export const Header: React.FC = () => {
 
 	return (
 		<header className='header'>
-			<div className='header-box'>
-				<h1 className='header--title'>
-					<FaRegStickyNote className='header--title-icon' /> NoteApp
+			<div className='header__box'>
+				<h1 className='header__title'>
+					<FaRegStickyNote className='header__title-icon' /> NoteApp
 				</h1>
-				<div className='header--button-container'>
+				<div className='header__button-container'>
 					{loginStatus && (
 						<>
 							<button
-								className='header--button'
+								className='header__button'
 								type='button'
 								onClick={() => {
 									scrollToTop();
 									dispatch(showPanel());
 								}}>
-								<FaPlus className='header--button-icon' />
+								<FaPlus className='header__button-icon' />
 							</button>
-							<button className='header--button' type='button' onClick={deleteAllNotes}>
-								<FaTrashAlt className='header--button-icon' />
+							<button className='header__button' type='button' onClick={deleteAllNotes}>
+								<FaTrashAlt className='header__button-icon' />
 							</button>
-							<button className='header--button' type='button' onClick={handleLogout}>
-								<FiLogOut className='header--button-icon' />
+							<button className='header__button' type='button' onClick={handleLogout}>
+								<FiLogOut className='header__button-icon' />
 							</button>
 						</>
 					)}

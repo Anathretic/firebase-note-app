@@ -25,29 +25,29 @@ export const NotesArray: React.FC = () => {
 			fetchUserData();
 		} catch (err) {
 			if (err instanceof Error) {
-				dispatch(setErrorValue('Something went wrong.. Try again later!'));
+				dispatch(setErrorValue('Something went wrong.. Refresh!'));
 			}
 		}
 	};
 
 	return (
-		<>
-			<div className='notes-array--username'>
+		<div className='notes-array'>
+			<div className='notes-array__username'>
 				<p>{user?.displayName}</p>
 			</div>
-			<div className='notes-array--container'>
+			<div className='notes-array__container'>
 				{userDataNotesArray.map(data => (
-					<div className='notes-array--item white-gradient' key={data.id}>
-						<div className='notes-array--header'>
-							<h3 className='notes-array--title'>{data.title}</h3>
-							<button className='notes-array--button' type='button' onClick={() => deleteNote(data, data.id)}>
+					<div className='notes-array__item white-gradient' key={data.id}>
+						<div className='notes-array__header'>
+							<h3 className='notes-array__title'>{data.title}</h3>
+							<button className='notes-array__button' type='button' onClick={() => deleteNote(data, data.id)}>
 								<TiDeleteOutline />
 							</button>
 						</div>
-						<div className='notes-array--text'>{data.description}</div>
+						<div className='notes-array__text'>{data.description}</div>
 					</div>
 				))}
 			</div>
-		</>
+		</div>
 	);
 };

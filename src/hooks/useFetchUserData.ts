@@ -20,7 +20,7 @@ export const useFetchUserData = () => {
 			dispatch(setUserData(userData.notes));
 		} catch (err) {
 			if (err instanceof Error) {
-				dispatch(setErrorValue('Something went wrong.. Try again later!'));
+				dispatch(setErrorValue('Something went wrong.. Refresh!'));
 				console.log(err);
 			}
 		}

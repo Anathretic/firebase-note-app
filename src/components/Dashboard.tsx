@@ -18,5 +18,5 @@ export const Dashboard: React.FC = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [addNotePanelStatus, loginStatus]);
 
-	return <div className='dashboard-container'>{addNotePanelStatus ? <AddNotePanel /> : <NotesArray />}</div>;
+	return <div className='dashboard'>{addNotePanelStatus ? <AddNotePanel /> : <NotesArray />}</div>;
 };

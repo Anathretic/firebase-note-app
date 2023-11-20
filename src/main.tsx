@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import { router } from './Router.tsx';
 import { store } from './redux/store.ts';
 
-import './index.css';
+import './sass/main.scss';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>

@@ -4,10 +4,10 @@ import { FaGithubSquare, FaLinkedin, FaHome } from 'react-icons/fa';
 export const Footer: React.FC = () => {
 	return (
 		<footer className='footer'>
-			<div className='footer--text'>
+			<div className='footer__text'>
 				<span>Do you want to see my other projects or repo? Check the links below!</span>
-				<div className='footer--icons'>
-					<IconContext.Provider value={{ className: 'footer--icon' }}>
+				<div className='footer__icons-box'>
+					<IconContext.Provider value={{ className: 'footer__icon' }}>
 						<a href='https://konrad-wojtylo.com' target='_blank' rel='noreferrer'>
 							<FaHome />
 						</a>
