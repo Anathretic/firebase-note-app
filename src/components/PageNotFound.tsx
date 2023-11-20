@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { scrollToTop } from '../utils/scrollToTop';
 
 export const PageNotFound: React.FC = () => {
 	return (
@@ -7,7 +8,7 @@ export const PageNotFound: React.FC = () => {
 			<a href='https://storyset.com/online' className='notfound__credits' target='_blank'>
 				Error 404 image by Storyset
 			</a>
-			<Link to='/' className='notfound__btn'>
+			<Link onClick={() => scrollToTop()} to='/' className='notfound__btn'>
 				Return
 			</Link>
 		</div>

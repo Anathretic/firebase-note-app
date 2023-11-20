@@ -10,6 +10,7 @@ export const ErrorPopup: React.FC = () => {
 	const handleButton = () => {
 		if (error.includes('Refresh')) {
 			fetchUserData();
+			dispatch(clearErrorValue());
 		} else {
 			dispatch(clearErrorValue());
 		}
