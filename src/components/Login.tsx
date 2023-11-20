@@ -1,15 +1,15 @@
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import { loginUser } from '../firebase/firebaseClient';
+
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { openRegister } from '../redux/registerReduxSlice/registerSlice';
 import { setLogin } from '../redux/loginReduxSlice/loginSlice';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 import { scrollToTop } from '../utils/scrollToTop';
-
 import { loginSchema } from '../schemas/schemas';
-import { loginUser } from '../firebase/firebaseClient';
-
-import { useForm, SubmitHandler } from 'react-hook-form';
 import { LoginInputs } from '../models/inputs.model';
-import { yupResolver } from '@hookform/resolvers/yup';
 
 export const Login: React.FC = () => {
 	const {
@@ -38,46 +38,46 @@ export const Login: React.FC = () => {
 
 	return (
 		<div className='login-container'>
-			<div className='login-container--box white-gradient'>
-				<h2 className='login-container--title'>Login</h2>
-				<hr className='login-container--strap' />
-				<form className='login-container--form' onSubmit={handleSubmit(onSubmit)}>
-					<div className='login-container--form-box'>
-						<label className='login-container--label' htmlFor='email'>
+			<div className='login-container__box white-gradient'>
+				<h2 className='login-container__title'>Login</h2>
+				<hr className='login-container__strap' />
+				<form className='login-container__form' onSubmit={handleSubmit(onSubmit)}>
+					<div className='login-container__form-box'>
+						<label className='login-container__label' htmlFor='email'>
 							E-mail:
 						</label>
 						<input
 							aria-invalid={errors.email ? true : false}
-							className='login-container--input'
+							className='login-container__input'
 							type='text'
 							id='email'
 							placeholder='Enter your e-mail..'
 							autoComplete='off'
 							{...register('email')}
 						/>
-						<p className='login-container--input-error'>{errors.email?.message}</p>
+						<p className='login-container__input-error'>{errors.email?.message}</p>
 					</div>
-					<div className='login-container--form-box'>
-						<label className='login-container--label' htmlFor='password'>
+					<div className='login-container__form-box'>
+						<label className='login-container__label' htmlFor='password'>
 							Password:
 						</label>
 						<input
 							aria-invalid={errors.password ? true : false}
-							className='login-container--input'
+							className='login-container__input'
 							type='password'
 							id='password'
 							placeholder='Enter your password..'
 							autoComplete='off'
 							{...register('password')}
 						/>
-						<p className='login-container--input-error'>{errors.password?.message}</p>
+						<p className='login-container__input-error'>{errors.password?.message}</p>
 					</div>
-					<div className='login-container--form-box'>
-						<input className='login-container--form-submit' type='submit' value='Login' />
+					<div className='login-container__form-box'>
+						<input className='login-container__form-submit' type='submit' value='Login' />
 					</div>
 				</form>
-				<hr className='login-container--strap' />
-				<div className='login-container--form-toggle'>
+				<hr className='login-container__strap' />
+				<div className='login-container__form-toggle'>
 					<p>Don't have an account?</p>
 					<button
 						type='button'

@@ -1,10 +1,9 @@
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 import { auth } from '../firebase/firebaseClient';
 
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { useAppDispatch } from './reduxHooks';
-
 import { setUserData } from '../redux/userDataReduxSlice/userDataSlice';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 
@@ -21,7 +20,7 @@ export const useFetchUserData = () => {
 			dispatch(setUserData(userData.notes));
 		} catch (err) {
 			if (err instanceof Error) {
-				dispatch(setErrorValue('Something went wrong.. Try again later!'));
+				dispatch(setErrorValue('Something went wrong.. Refresh!'));
 				console.log(err);
 			}
 		}

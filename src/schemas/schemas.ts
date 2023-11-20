@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import YupPassword from 'yup-password';
+
 YupPassword(yup);
 
 const errorMessage = { requiredField: 'This field is required!' };
@@ -34,11 +35,11 @@ export const noteSchema = yup.object({
 		.string()
 		.min(3, 'Must be at least 3 characters long!')
 		.max(12, 'Must be less than 12 characters!')
-		.matches(/^[a-zA-Z]+$/, 'Only letters without using spaces!')
+		.matches(/^[a-zA-Z ]+$/, 'Only letters without using spaces!')
 		.required(errorMessage.requiredField),
 	note: yup
 		.string()
 		.min(5, 'Must be at least 5 characters long!')
-		.max(300, 'Must be less than 300 characters!')
+		.max(500, 'Must be less than 500 characters!')
 		.required(errorMessage.requiredField),
 });

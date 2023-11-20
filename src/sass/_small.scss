@@ -1,0 +1,49 @@
+@media screen and (min-width: 400px) {
+	.login-container,
+	.register-container,
+	.add-note-container {
+		&__input {
+			width: 90%;
+		}
+	}
+	.add-note-container {
+		&__textarea {
+			width: 90%;
+		}
+
+		&__form-submit,
+		&__button {
+			width: 50%;
+		}
+	}
+
+	.notes-array {
+		&__item {
+			width: 300px;
+		}
+	}
+}
+
+@media screen and (min-width: 600px) {
+	.login-container,
+	.register-container,
+	.add-note-container {
+		width: 80%;
+	}
+
+	.footer {
+		&__icons-box {
+			padding: 0.5em 1em;
+		}
+
+		&__icon {
+			margin: 1em;
+		}
+	}
+
+	.notfound {
+		&__img {
+			width: 80%;
+		}
+	}
+}

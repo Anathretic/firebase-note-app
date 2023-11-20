@@ -1,0 +1,72 @@
+@media screen and (min-width: 768px) {
+	.error-popup {
+		&__box {
+			width: 70%;
+		}
+	}
+
+	.header {
+		&__box {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 0 2em;
+			margin: 0 auto;
+			width: 100%;
+			max-width: 1600px;
+		}
+
+		&__title {
+			padding: 1em 0;
+			margin: 0 0.25em;
+		}
+
+		&__button-container {
+			padding-bottom: 0;
+		}
+	}
+
+	.login-container,
+	.register-container,
+	.add-note-container {
+		width: 70%;
+
+		&__title {
+			font-size: 1.7em;
+		}
+	}
+
+	.add-note-container {
+		&__button-box {
+			flex-direction: row;
+		}
+
+		&__form-submit,
+		&__button {
+			width: 180px;
+		}
+	}
+
+	.notes-array {
+		&__container {
+			justify-content: center;
+			flex-direction: row;
+			flex-wrap: wrap;
+			row-gap: 1;
+		}
+
+		&__item {
+			margin: 1em;
+		}
+	}
+
+	.notfound {
+		&__credits {
+			font-size: 1em;
+		}
+
+		&__img {
+			width: 70%;
+		}
+	}
+}
