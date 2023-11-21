@@ -34,12 +34,12 @@ export const noteSchema = yup.object({
 	title: yup
 		.string()
 		.min(3, 'Must be at least 3 characters long!')
-		.max(12, 'Must be less than 12 characters!')
-		.matches(/^[a-zA-Z ]+$/, 'Only letters without using spaces!')
+		.max(12, 'Must be a maximum of 12 characters!')
+		.matches(/^[a-zA-Z ]+$/, 'Only letters!')
 		.required(errorMessage.requiredField),
 	note: yup
 		.string()
 		.min(5, 'Must be at least 5 characters long!')
-		.max(500, 'Must be less than 500 characters!')
+		.max(500, 'Must be a maximum of 500 characters!')
 		.required(errorMessage.requiredField),
 });
