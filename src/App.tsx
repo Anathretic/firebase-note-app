@@ -13,8 +13,8 @@ import { getInitialErrorPopupValue } from './redux/errorPopupReduxSlice/errorPop
 import { ErrorPopup } from './components/ErrorPopup';
 
 export const App: React.FC = () => {
-	const login = useAppSelector(state => getInitialLoginValue(state));
-	const error = useAppSelector(state => getInitialErrorPopupValue(state));
+	const login = useAppSelector(getInitialLoginValue);
+	const error = useAppSelector(getInitialErrorPopupValue);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {

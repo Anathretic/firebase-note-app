@@ -4,7 +4,7 @@ import { clearErrorValue, getInitialErrorPopupValue } from '../redux/errorPopupR
 
 export const ErrorPopup: React.FC = () => {
 	const [fetchUserData] = useFetchUserData();
-	const error = useAppSelector(state => getInitialErrorPopupValue(state));
+	const error = useAppSelector(getInitialErrorPopupValue);
 	const dispatch = useAppDispatch();
 
 	const handleButton = () => {

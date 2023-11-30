@@ -19,7 +19,7 @@ import { FiLogOut } from 'react-icons/fi';
 export const Header: React.FC = () => {
 	const [user] = useAuthState(auth);
 	const [fetchUserData] = useFetchUserData();
-	const loginStatus = useAppSelector(state => getInitialLoginValue(state));
+	const loginStatus = useAppSelector(getInitialLoginValue);
 	const dispatch = useAppDispatch();
 
 	const deleteAllNotes = async () => {

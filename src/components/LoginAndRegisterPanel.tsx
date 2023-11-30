@@ -5,7 +5,7 @@ import { useAppSelector } from '../hooks/reduxHooks';
 import { getInitialRegisterValue } from '../redux/registerReduxSlice/registerSlice';
 
 export const LoginAndRegisterPanel: React.FC = () => {
-	const registerStatus = useAppSelector(state => getInitialRegisterValue(state));
+	const registerStatus = useAppSelector(getInitialRegisterValue);
 
 	return <>{!registerStatus ? <Login /> : <Register />}</>;
 };

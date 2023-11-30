@@ -1,5 +1,5 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { collection, setDoc, doc } from 'firebase/firestore';
+import { collection, setDoc, doc, Timestamp } from 'firebase/firestore';
 import { updateProfile } from 'firebase/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -43,6 +43,7 @@ export const Register: React.FC = () => {
 						id: 'test-note',
 						title: `Hello there!`,
 						description: `I'm your first note.. Looks like everything works! Enjoy your work ${user.displayName}! :)`,
+						date: Timestamp.fromDate(new Date()).seconds,
 					},
 				],
 			});
