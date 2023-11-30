@@ -1,21 +1,14 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
-import { auth } from '../../firebase/firebaseClient';
-import { db } from '../../firebase/firebaseConfig';
-
 import { useAppDispatch } from '../../hooks/reduxHooks';
+import { useAddNote } from '../../hooks/useNote';
 import { hidePanel } from '../../redux/addNotePanelReduxSlice/addNotePanelSlice';
-import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
 import { noteSchema } from '../../schemas/schemas';
 import { AddNoteInputs } from '../../models/inputs.model';
 import { scrollToTop } from '../../utils/scrollToTop';
 
-import uuid from 'react-uuid';
-
 export const AddNotePanel: React.FC = () => {
-	const [user] = useAuthState(auth);
+	const [addNote] = useAddNote();
 	const {
 		register,
 		handleSubmit,
@@ -25,21 +18,9 @@ export const AddNotePanel: React.FC = () => {
 	});
 	const dispatch = useAppDispatch();
 
-	const onSubmit: SubmitHandler<AddNoteInputs> = async ({ note, title }) => {
-		try {
-			await updateDoc(doc(db, 'users', `${user?.uid}`), {
-				notes: arrayUnion({
-					id: uuid(),
-					title: title,
-					description: note,
-				}),
-			});
-			handleBack();
-		} catch (err) {
-			if (err instanceof Error) {
-				dispatch(setErrorValue('Something went wrong.. Refresh!'));
-			}
-		}
+	const onSubmit: SubmitHandler<AddNoteInputs> = async ({ title, note }) => {
+		addNote(title, note);
+		handleBack();
 	};
 
 	const handleBack = () => {
