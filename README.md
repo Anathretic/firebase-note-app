@@ -12,6 +12,10 @@ If the user accidentally closes the browser, the session will be remembered and 
 
 Firebase has rather strange and sometimes poor documentation, so in some cases it was quite time-consuming to find the cause of a particular behavior. Example? A retrieval error to correctly display a username that required adding just one line of code to get everything working properly.
 
+## Milestones
+
+Addition of note editing based on delete and add functionality and sorting of notes by date to 100% fool the user (Firestore made me do it).
+
 ## Links & Tools
 
 **NoSQL database:** [Firebase](https://firebase.google.com/)
