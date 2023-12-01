@@ -1,15 +1,10 @@
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { doc, updateDoc } from 'firebase/firestore';
-import { auth, logoutUser } from '../firebase/firebaseClient';
-import { db } from '../firebase/firebaseConfig';
-
+import { logoutUser } from '../firebase/firebaseClient';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
-import { useFetchUserData } from '../hooks/useFetchUserData';
+import { useDeleteAllNotes } from '../hooks/noteHooks';
 import { showPanel } from '../redux/addNotePanelReduxSlice/addNotePanelSlice';
 import { getInitialLoginValue, setLogout } from '../redux/loginReduxSlice/loginSlice';
 import { closeRegister } from '../redux/registerReduxSlice/registerSlice';
 import { clearUserData } from '../redux/userDataReduxSlice/userDataSlice';
-import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 import { scrollToTop } from '../utils/scrollToTop';
 
 import { FaPlus } from 'react-icons/fa6';
@@ -17,23 +12,9 @@ import { FaTrashAlt, FaRegStickyNote } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 
 export const Header: React.FC = () => {
-	const [user] = useAuthState(auth);
-	const [fetchUserData] = useFetchUserData();
-	const loginStatus = useAppSelector(state => getInitialLoginValue(state));
+	const [deleteAllNotes] = useDeleteAllNotes();
+	const loginStatus = useAppSelector(getInitialLoginValue);
 	const dispatch = useAppDispatch();
-
-	const deleteAllNotes = async () => {
-		try {
-			await updateDoc(doc(db, 'users', `${user?.uid}`), {
-				notes: [],
-			});
-			fetchUserData();
-		} catch (err) {
-			if (err instanceof Error) {
-				dispatch(setErrorValue('Something went wrong.. Refresh!'));
-			}
-		}
-	};
 
 	const handleLogout = () => {
 		dispatch(clearUserData());

@@ -1,33 +1,28 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { arrayRemove, doc, updateDoc } from 'firebase/firestore';
 import { auth } from '../../firebase/firebaseClient';
-import { db } from '../../firebase/firebaseConfig';
-
-import { useFetchUserData } from '../../hooks/useFetchUserData';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-
+import { useDeleteNote } from '../../hooks/noteHooks';
 import { getInitialUserDataValue } from '../../redux/userDataReduxSlice/userDataSlice';
-import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
-
-import { TiDeleteOutline } from 'react-icons/ti';
+import { showPanel } from '../../redux/addNotePanelReduxSlice/addNotePanelSlice';
+import { setEditData } from '../../redux/editNoteDataReduxSlice/editNoteDataSlice';
+import { enableEditOption } from '../../redux/editNoteReduxSlice/editNoteSlice';
+import { TiDeleteOutline, TiPencil } from 'react-icons/ti';
 
 export const NotesArray: React.FC = () => {
 	const [user] = useAuthState(auth);
-	const [fetchUserData] = useFetchUserData();
-	const userDataNotesArray = useAppSelector(state => getInitialUserDataValue(state));
+	const [deleteNote] = useDeleteNote();
+	const userDataNotesArray = useAppSelector(getInitialUserDataValue);
 	const dispatch = useAppDispatch();
 
-	const deleteNote = async (data: object, id: string) => {
-		try {
-			await updateDoc(doc(db, 'users', `${user?.uid}`), {
-				notes: arrayRemove({ id, ...data }),
-			});
-			fetchUserData();
-		} catch (err) {
-			if (err instanceof Error) {
-				dispatch(setErrorValue('Something went wrong.. Refresh!'));
-			}
-		}
+	// Shallow copy of userDataNotesArray 
+	const userData = [...userDataNotesArray];
+	// Sorting the data to fool the users in 100% into thinking they are editing a note
+	const sortedUserData = userData.sort((a, b) => a.date - b.date);
+
+	const handleEdit = (data: object) => {
+		dispatch(enableEditOption());
+		dispatch(setEditData(data));
+		dispatch(showPanel());
 	};
 
 	return (
@@ -36,13 +31,18 @@ export const NotesArray: React.FC = () => {
 				<p>{user?.displayName}</p>
 			</div>
 			<div className='notes-array__container'>
-				{userDataNotesArray.map(data => (
+				{sortedUserData.map(data => (
 					<div className='notes-array__item white-gradient' key={data.id}>
 						<div className='notes-array__header'>
 							<h3 className='notes-array__title'>{data.title}</h3>
-							<button className='notes-array__button' type='button' onClick={() => deleteNote(data, data.id)}>
-								<TiDeleteOutline />
-							</button>
+							<div>
+								<button className='notes-array__button' type='button' onClick={() => handleEdit(data)}>
+									<TiPencil />
+								</button>
+								<button className='notes-array__button' type='button' onClick={() => deleteNote(data, data.id)}>
+									<TiDeleteOutline />
+								</button>
+							</div>
 						</div>
 						<div className='notes-array__text'>{data.description}</div>
 					</div>

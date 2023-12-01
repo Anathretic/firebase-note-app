@@ -10,8 +10,8 @@ import { getInitialLoginValue } from '../redux/loginReduxSlice/loginSlice';
 
 export const Dashboard: React.FC = () => {
 	const [fetchUserData] = useFetchUserData();
-	const loginStatus = useAppSelector(state => getInitialLoginValue(state));
-	const addNotePanelStatus = useAppSelector(state => getInitialAddNotePanelValue(state));
+	const loginStatus = useAppSelector(getInitialLoginValue);
+	const addNotePanelStatus = useAppSelector(getInitialAddNotePanelValue);
 
 	useEffect(() => {
 		fetchUserData();

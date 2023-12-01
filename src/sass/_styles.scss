@@ -287,6 +287,10 @@ body {
 		cursor: pointer;
 	}
 
+	&__button:first-of-type {
+		margin-right: 5px;
+	}
+
 	&__text {
 		padding-top: 0.5em;
 		overflow-wrap: break-word;
