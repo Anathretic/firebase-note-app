@@ -1,7 +1,7 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase/firebaseClient';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { useDeleteNote } from '../../hooks/useNote';
+import { useDeleteNote } from '../../hooks/noteHooks';
 import { getInitialUserDataValue } from '../../redux/userDataReduxSlice/userDataSlice';
 import { showPanel } from '../../redux/addNotePanelReduxSlice/addNotePanelSlice';
 import { setEditData } from '../../redux/editNoteDataReduxSlice/editNoteDataSlice';
@@ -13,6 +13,11 @@ export const NotesArray: React.FC = () => {
 	const [deleteNote] = useDeleteNote();
 	const userDataNotesArray = useAppSelector(getInitialUserDataValue);
 	const dispatch = useAppDispatch();
+
+	// Shallow copy of userDataNotesArray 
+	const userData = [...userDataNotesArray];
+	// Sorting the data to fool the users in 100% into thinking they are editing a note
+	const sortedUserData = userData.sort((a, b) => a.date - b.date);
 
 	const handleEdit = (data: object) => {
 		dispatch(enableEditOption());
@@ -26,7 +31,7 @@ export const NotesArray: React.FC = () => {
 				<p>{user?.displayName}</p>
 			</div>
 			<div className='notes-array__container'>
-				{userDataNotesArray.map(data => (
+				{sortedUserData.map(data => (
 					<div className='notes-array__item white-gradient' key={data.id}>
 						<div className='notes-array__header'>
 							<h3 className='notes-array__title'>{data.title}</h3>

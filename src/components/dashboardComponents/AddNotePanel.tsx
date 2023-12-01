@@ -1,7 +1,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { useAddNote, useEditNote } from '../../hooks/useNote';
+import { useAddNote, useEditNote } from '../../hooks/noteHooks';
 import { hidePanel } from '../../redux/addNotePanelReduxSlice/addNotePanelSlice';
 import { clearEditData, getInitialEditNoteDataValue } from '../../redux/editNoteDataReduxSlice/editNoteDataSlice';
 import { disableEditOption, getInitialEditNoteValue } from '../../redux/editNoteReduxSlice/editNoteSlice';
@@ -23,11 +23,9 @@ export const AddNotePanel: React.FC = () => {
 	const editData = useAppSelector(getInitialEditNoteDataValue);
 	const dispatch = useAppDispatch();
 
-	console.log(editData.date);
-
-	const onSubmit: SubmitHandler<AddNoteInputs> = async ({ title, note }) => {
+	const onSubmit: SubmitHandler<AddNoteInputs> = ({ title, note }) => {
 		if (editOptionsStatus) {
-			editNote(editData, note, title, editData.id, editData.date)
+			editNote(editData, note, title, editData.id, editData.date);
 		} else {
 			addNote(title, note);
 		}

@@ -87,3 +87,24 @@ export const useEditNote = () => {
 
 	return [editNote];
 };
+
+export const useDeleteAllNotes = () => {
+	const [user] = useAuthState(auth);
+	const [fetchUserData] = useFetchUserData();
+	const dispatch = useAppDispatch();
+
+	const deleteAllNotes = async () => {
+		try {
+			await updateDoc(doc(db, 'users', `${user?.uid}`), {
+				notes: [],
+			});
+			fetchUserData();
+		} catch (err) {
+			if (err instanceof Error) {
+				dispatch(setErrorValue('Something went wrong.. Refresh!'));
+			}
+		}
+	};
+
+	return [deleteAllNotes];
+};
