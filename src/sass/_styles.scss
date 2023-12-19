@@ -309,10 +309,14 @@ body {
 	}
 
 	&__icons-box {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		padding-top: 0.5em;
 	}
 
 	&__icon {
+		display: flex;
 		margin: 0.65em;
 		color: colors.$white-color;
 		font-size: 32px;
