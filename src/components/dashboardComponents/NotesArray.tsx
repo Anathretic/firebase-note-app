@@ -1,8 +1,11 @@
+import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase/firebaseClient';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { useDeleteNote } from '../../hooks/noteHooks';
+import { useRandomGreeting } from '../../hooks/useRandomGreeting';
 import { getInitialUserDataValue } from '../../redux/userDataReduxSlice/userDataSlice';
+import { getInitialGreetingValue } from '../../redux/randomGreetingReduxSlice/randomGreetingSlice';
 import { showPanel } from '../../redux/addNotePanelReduxSlice/addNotePanelSlice';
 import { setEditData } from '../../redux/editNoteDataReduxSlice/editNoteDataSlice';
 import { enableEditOption } from '../../redux/editNoteReduxSlice/editNoteSlice';
@@ -11,10 +14,12 @@ import { TiDeleteOutline, TiPencil } from 'react-icons/ti';
 export const NotesArray: React.FC = () => {
 	const [user] = useAuthState(auth);
 	const [deleteNote] = useDeleteNote();
+	const [randomGreeting] = useRandomGreeting();
 	const userDataNotesArray = useAppSelector(getInitialUserDataValue);
+	const randomGreetingValue = useAppSelector(getInitialGreetingValue);
 	const dispatch = useAppDispatch();
 
-	// Shallow copy of userDataNotesArray 
+	// Shallow copy of userDataNotesArray
 	const userData = [...userDataNotesArray];
 	// Sorting the data to fool the users in 100% into thinking they are editing a note
 	const sortedUserData = userData.sort((a, b) => a.date - b.date);
@@ -25,10 +30,18 @@ export const NotesArray: React.FC = () => {
 		dispatch(showPanel());
 	};
 
+	useEffect(() => {
+		randomGreeting();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
 	return (
 		<div className='notes-array'>
 			<div className='notes-array__username'>
-				<p>{user?.displayName}</p>
+				<p>
+					{randomGreetingValue}
+					{user?.displayName}!
+				</p>
 			</div>
 			<div className='notes-array__container'>
 				{sortedUserData.map(data => (

@@ -6,6 +6,7 @@ import addNotePanelSlice from './addNotePanelReduxSlice/addNotePanelSlice';
 import errorPopupSlice from './errorPopupReduxSlice/errorPopupSlice';
 import editNoteSlice from './editNoteReduxSlice/editNoteSlice';
 import editNoteDataSlice from './editNoteDataReduxSlice/editNoteDataSlice';
+import randomGreetingSlice from './randomGreetingReduxSlice/randomGreetingSlice';
 
 export const rootReducer = combineReducers({
 	loginReduxStore: loginSlice.reducer,
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
 	editNoteReduxStore: editNoteSlice.reducer,
 	editNoteDataReduxStore: editNoteDataSlice.reducer,
 	errorPopupReduxStore: errorPopupSlice.reducer,
+	randomGreetingStore: randomGreetingSlice.reducer,
 });
