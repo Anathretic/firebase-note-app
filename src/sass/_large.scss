@@ -21,27 +21,18 @@
 		}
 	}
 
-	.login-container,
-	.register-container,
-	.add-note-container {
+	.login,
+	.register,
+	.add-note {
 		width: 50%;
 
 		&__title {
 			font-size: 1.8em;
 		}
-
-		&__input-error {
-			font-size: 0.9em;
-		}
 	}
 
-	.login-container,
-	.register-container {
-		&__label {
-			font-size: 1.1em;
-		}
-
-		&__form-submit,
+	.login,
+	.register {
 		&__form-toggle button {
 			font-size: 1.1em;
 
@@ -51,9 +42,31 @@
 		}
 	}
 
-	.add-note-container {
-		&__form-submit,
-		&__button {
+	.add-note {
+		&__title {
+			font-size: 1.8em;
+		}
+
+		&__submit,
+		&__back-button {
+			font-size: 1.1em;
+
+			&:hover {
+				background-color: colors.$second-color;
+			}
+		}
+	}
+
+	.form {
+		&__label {
+			font-size: 1.1em;
+		}
+
+		&__input-error {
+			font-size: 0.9em;
+		}
+
+		&__submit {
 			font-size: 1.1em;
 
 			&:hover {
@@ -138,6 +151,12 @@
 	}
 }
 
+@media screen and (min-width: 1440px) {
+	body {
+		padding-right: 17px;
+	}
+}
+
 @media screen and (min-width: 1536px) {
 	.error-popup {
 		&__box {
@@ -145,9 +164,9 @@
 		}
 	}
 
-	.login-container,
-	.register-container,
-	.add-note-container {
+	.login,
+	.register,
+	.add-note {
 		width: 35%;
 	}
 }

@@ -1,7 +1,20 @@
+export interface InputAndTextarea {
+	label: string;
+	inputName: string;
+	placeholder: string;
+	children: React.ReactNode;
+	type?: string;
+	defaultValue?: string;
+}
+
+export interface Submit {
+	value: string;
+}
+
 export interface RegisterInputs {
-	name: string;
 	email: string;
 	password: string;
+	name: string;
 	confirmPassword: string;
 }
 

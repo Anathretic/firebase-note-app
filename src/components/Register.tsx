@@ -2,16 +2,15 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { collection, setDoc, doc, Timestamp } from 'firebase/firestore';
 import { updateProfile } from 'firebase/auth';
 import { yupResolver } from '@hookform/resolvers/yup';
-
 import { auth, registerUser } from '../firebase/firebaseClient';
 import { db } from '../firebase/firebaseConfig';
-
 import { useAppDispatch } from '../hooks/reduxHooks';
 import { closeRegister } from '../redux/registerReduxSlice/registerSlice';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 import { scrollToTop } from '../utils/scrollToTop';
 import { registerSchema } from '../schemas/schemas';
 import { RegisterInputs } from '../models/inputs.model';
+import { FormInput, FormSubmit } from './littleComponents/FormElements';
 
 export const Register: React.FC = () => {
 	const {
@@ -59,77 +58,51 @@ export const Register: React.FC = () => {
 	};
 
 	return (
-		<div className='register-container'>
-			<div className='register-container__box white-gradient'>
-				<h2 className='register-container__title'>Register</h2>
-				<hr className='register-container__strap' />
-				<form className='register-container__form' onSubmit={handleSubmit(onSubmit)}>
-					<div className='register-container__form-box'>
-						<label className='register-container__label' htmlFor='name'>
-							Name:
-						</label>
-						<input
-							aria-invalid={errors.name ? true : false}
-							className='register-container__input'
-							type='text'
-							id='name'
-							placeholder='Enter your name..'
-							autoComplete='off'
-							{...register('name')}
-						/>
-						<p className='register-container__input-error'>{errors.name?.message}</p>
-					</div>
-					<div className='register-container__form-box'>
-						<label className='register-container__label' htmlFor='email'>
-							E-mail:
-						</label>
-						<input
-							aria-invalid={errors.email ? true : false}
-							className='register-container__input'
-							type='text'
-							id='email'
-							placeholder='Enter your e-mail..'
-							autoComplete='off'
-							{...register('email')}
-						/>
-						<p className='register-container__input-error'>{errors.email?.message}</p>
-					</div>
-					<div className='register-container__form-box'>
-						<label className='register-container__label' htmlFor='password'>
-							Password:
-						</label>
-						<input
-							aria-invalid={errors.password ? true : false}
-							className='register-container__input'
-							type='password'
-							id='password'
-							placeholder='Enter your password..'
-							autoComplete='off'
-							{...register('password')}
-						/>
-						<p className='register-container__input-error'>{errors.password?.message}</p>
-					</div>
-					<div className='register-container__form-box'>
-						<label className='register-container__label' htmlFor='confirmPassword'>
-							Confirm password:
-						</label>
-						<input
-							aria-invalid={errors.confirmPassword ? true : false}
-							className='register-container__input'
-							type='password'
-							id='confirmPassword'
-							placeholder='Confirm your password..'
-							autoComplete='off'
-							{...register('confirmPassword')}
-						/>
-						<p className='register-container__input-error'>{errors.confirmPassword?.message}</p>
-					</div>
-					<div className='register-container__form-box'>
-						<input className='register-container__form-submit' type='submit' value='Register' />
-					</div>
+		<div className='register'>
+			<div className='register__container white-gradient'>
+				<h2 className='register__title'>Register</h2>
+				<hr className='register__strap' />
+				<form className='form' onSubmit={handleSubmit(onSubmit)}>
+					<FormInput
+						label='Name:'
+						inputName='name'
+						type='text'
+						placeholder='Enter your name..'
+						children={errors.name?.message}
+						aria-invalid={errors.name ? true : false}
+						{...register('name')}
+					/>
+					<FormInput
+						label='E-mail:'
+						inputName='email'
+						type='text'
+						placeholder='Enter your e-mail..'
+						children={errors.email?.message}
+						aria-invalid={errors.email ? true : false}
+						{...register('email')}
+					/>
+					<FormInput
+						label='Password:'
+						inputName='password'
+						type='password'
+						placeholder='Enter your password..'
+						children={errors.password?.message}
+						aria-invalid={errors.password ? true : false}
+						{...register('password')}
+					/>
+					<FormInput
+						label='Confirm password:'
+						inputName='confirmPassword'
+						type='password'
+						placeholder='Confirm your password..'
+						children={errors.confirmPassword?.message}
+						aria-invalid={errors.confirmPassword ? true : false}
+						{...register('confirmPassword')}
+					/>
+					<FormSubmit value='Register' />
 				</form>
-				<hr className='register-container__strap' />
-				<div className='register-container__form-toggle'>
+				<hr className='register__strap' />
+				<div className='register__form-toggle'>
 					<p>Already have an account? </p>
 					<button
 						type='button'

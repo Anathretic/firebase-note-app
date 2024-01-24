@@ -1,19 +1,15 @@
 @media screen and (min-width: 400px) {
-	.login-container,
-	.register-container,
-	.add-note-container {
-		&__input {
-			width: 90%;
+	.add-note {
+		&__submit,
+		&__back-button {
+			width: 50%;
 		}
 	}
-	.add-note-container {
+
+	.form {
+		&__input,
 		&__textarea {
 			width: 90%;
-		}
-
-		&__form-submit,
-		&__button {
-			width: 50%;
 		}
 	}
 
@@ -25,9 +21,9 @@
 }
 
 @media screen and (min-width: 600px) {
-	.login-container,
-	.register-container,
-	.add-note-container {
+	.login,
+	.register,
+	.add-note {
 		width: 80%;
 	}
 

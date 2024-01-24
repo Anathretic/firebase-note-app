@@ -26,9 +26,9 @@
 		}
 	}
 
-	.login-container,
-	.register-container,
-	.add-note-container {
+	.login,
+	.register,
+	.add-note {
 		width: 70%;
 
 		&__title {
@@ -36,13 +36,13 @@
 		}
 	}
 
-	.add-note-container {
+	.add-note {
 		&__button-box {
 			flex-direction: row;
 		}
 
-		&__form-submit,
-		&__button {
+		&__submit,
+		&__back-button {
 			width: 180px;
 		}
 	}
