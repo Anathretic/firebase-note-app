@@ -1,22 +1,20 @@
 import { useEffect } from 'react';
-
-import { NotesArray } from './dashboardComponents/NotesArray';
-import { AddNotePanel } from './dashboardComponents/AddNotePanel';
-
 import { useAppSelector } from '../hooks/reduxHooks';
 import { useFetchUserData } from '../hooks/useFetchUserData';
-import { getInitialAddNotePanelValue } from '../redux/addNotePanelReduxSlice/addNotePanelSlice';
+import { getInitialAddOrEditNoteValue } from '../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
 import { getInitialLoginValue } from '../redux/loginReduxSlice/loginSlice';
+import { NotesArray } from './dashboardComponents/NotesArray';
+import { AddOrEditNote } from './dashboardComponents/AddOrEditNote';
 
 export const Dashboard: React.FC = () => {
 	const [fetchUserData] = useFetchUserData();
 	const loginStatus = useAppSelector(getInitialLoginValue);
-	const addNotePanelStatus = useAppSelector(getInitialAddNotePanelValue);
+	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
 
 	useEffect(() => {
 		fetchUserData();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [addNotePanelStatus, loginStatus]);
+	}, [addOrEditNoteStatus, loginStatus]);
 
-	return <div className='dashboard'>{addNotePanelStatus ? <AddNotePanel /> : <NotesArray />}</div>;
+	return <div className='dashboard'>{addOrEditNoteStatus !== '' ? <AddOrEditNote /> : <NotesArray />}</div>;
 };

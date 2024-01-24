@@ -96,7 +96,7 @@ body {
 
 .login,
 .register,
-.add-note {
+.add-or-edit-note {
 	padding: 3em 1em;
 	margin: auto;
 	width: 100%;
@@ -142,7 +142,7 @@ body {
 	}
 }
 
-.add-note {
+.add-or-edit-note {
 	&__button-box {
 		@include mixins.flex;
 		flex-direction: column;

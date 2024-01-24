@@ -6,9 +6,9 @@ import { useDeleteNote } from '../../hooks/noteHooks';
 import { useRandomGreeting } from '../../hooks/useRandomGreeting';
 import { getInitialUserDataValue } from '../../redux/userDataReduxSlice/userDataSlice';
 import { getInitialGreetingValue } from '../../redux/randomGreetingReduxSlice/randomGreetingSlice';
-import { showPanel } from '../../redux/addNotePanelReduxSlice/addNotePanelSlice';
+import { editNote } from '../../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
 import { setEditData } from '../../redux/editNoteDataReduxSlice/editNoteDataSlice';
-import { enableEditOption } from '../../redux/editNoteReduxSlice/editNoteSlice';
+import { scrollToTop } from '../../utils/scrollToTop';
 import { TiDeleteOutline, TiPencil } from 'react-icons/ti';
 
 export const NotesArray: React.FC = () => {
@@ -25,9 +25,9 @@ export const NotesArray: React.FC = () => {
 	const sortedUserData = userData.sort((a, b) => a.date - b.date);
 
 	const handleEdit = (data: object) => {
-		dispatch(enableEditOption());
+		dispatch(editNote());
 		dispatch(setEditData(data));
-		dispatch(showPanel());
+		scrollToTop();
 	};
 
 	useEffect(() => {

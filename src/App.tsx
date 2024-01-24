@@ -1,15 +1,13 @@
 import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase/firebaseClient';
-
+import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
+import { getInitialLoginValue, setLogin, setLogout } from './redux/loginReduxSlice/loginSlice';
+import { getInitialErrorPopupValue } from './redux/errorPopupReduxSlice/errorPopupSlice';
 import { Header } from './components/Header';
 import { LoginAndRegisterPanel } from './components/LoginAndRegisterPanel';
 import { Dashboard } from './components/Dashboard';
 import { Footer } from './components/Footer';
-
-import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
-import { getInitialLoginValue, setLogin, setLogout } from './redux/loginReduxSlice/loginSlice';
-import { getInitialErrorPopupValue } from './redux/errorPopupReduxSlice/errorPopupSlice';
 import { ErrorPopup } from './components/littleComponents/ErrorPopup';
 
 export const App: React.FC = () => {
