@@ -1,7 +1,7 @@
 import { logoutUser } from '../firebase/firebaseClient';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import { useDeleteAllNotes } from '../hooks/noteHooks';
-import { showPanel } from '../redux/addNotePanelReduxSlice/addNotePanelSlice';
+import { addNote, getInitialAddOrEditNoteValue } from '../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
 import { getInitialLoginValue, setLogout } from '../redux/loginReduxSlice/loginSlice';
 import { closeRegister } from '../redux/registerReduxSlice/registerSlice';
 import { clearUserData } from '../redux/userDataReduxSlice/userDataSlice';
@@ -14,6 +14,7 @@ import { FiLogOut } from 'react-icons/fi';
 export const Header: React.FC = () => {
 	const [deleteAllNotes] = useDeleteAllNotes();
 	const loginStatus = useAppSelector(getInitialLoginValue);
+	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
 	const dispatch = useAppDispatch();
 
 	const handleLogout = () => {
@@ -33,18 +34,22 @@ export const Header: React.FC = () => {
 				<div className='header__button-container'>
 					{loginStatus && (
 						<>
-							<button
-								className='header__button'
-								type='button'
-								onClick={() => {
-									scrollToTop();
-									dispatch(showPanel());
-								}}>
-								<FaPlus className='header__button-icon' />
-							</button>
-							<button className='header__button' type='button' onClick={deleteAllNotes}>
-								<FaTrashAlt className='header__button-icon' />
-							</button>
+							{addOrEditNoteStatus === '' && (
+								<>
+									<button
+										className='header__button'
+										type='button'
+										onClick={() => {
+											scrollToTop();
+											dispatch(addNote());
+										}}>
+										<FaPlus className='header__button-icon' />
+									</button>
+									<button className='header__button' type='button' onClick={deleteAllNotes}>
+										<FaTrashAlt className='header__button-icon' />
+									</button>
+								</>
+							)}
 							<button className='header__button' type='button' onClick={handleLogout}>
 								<FiLogOut className='header__button-icon' />
 							</button>

@@ -28,7 +28,7 @@
 
 	.login,
 	.register,
-	.add-note {
+	.add-or-edit-note {
 		width: 70%;
 
 		&__title {
@@ -36,7 +36,7 @@
 		}
 	}
 
-	.add-note {
+	.add-or-edit-note {
 		&__button-box {
 			flex-direction: row;
 		}

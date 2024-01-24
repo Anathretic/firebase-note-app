@@ -1,5 +1,5 @@
 @media screen and (min-width: 400px) {
-	.add-note {
+	.add-or-edit-note {
 		&__submit,
 		&__back-button {
 			width: 50%;
@@ -23,7 +23,7 @@
 @media screen and (min-width: 600px) {
 	.login,
 	.register,
-	.add-note {
+	.add-or-edit-note {
 		width: 80%;
 	}
 

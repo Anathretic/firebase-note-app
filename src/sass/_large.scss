@@ -23,7 +23,7 @@
 
 	.login,
 	.register,
-	.add-note {
+	.add-or-edit-note {
 		width: 50%;
 
 		&__title {
@@ -42,7 +42,7 @@
 		}
 	}
 
-	.add-note {
+	.add-or-edit-note {
 		&__title {
 			font-size: 1.8em;
 		}
@@ -166,7 +166,7 @@
 
 	.login,
 	.register,
-	.add-note {
+	.add-or-edit-note {
 		width: 35%;
 	}
 }
