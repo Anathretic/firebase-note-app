@@ -8,6 +8,7 @@ import { disableEditOption, getInitialEditNoteValue } from '../../redux/editNote
 import { noteSchema } from '../../schemas/schemas';
 import { AddNoteInputs } from '../../models/inputs.model';
 import { scrollToTop } from '../../utils/scrollToTop';
+import { FormInput, FormTextarea } from '../littleComponents/FormElements';
 
 export const AddNotePanel: React.FC = () => {
 	const [addNote] = useAddNote();
@@ -42,46 +43,33 @@ export const AddNotePanel: React.FC = () => {
 	};
 
 	return (
-		<div className='add-note-container'>
-			<div className='add-note-container__box white-gradient'>
-				<h3 className='add-note-container__title'>{editOptionsStatus ? 'Edit note!' : 'Add note!'}</h3>
-				<hr className='add-note-container__strap' />
-				<form className='add-note-container__form' onSubmit={handleSubmit(onSubmit)}>
-					<div className='add-note-container__form-box'>
-						<label className='add-note-container__label' htmlFor='title'>
-							Title:
-						</label>
-						<input
-							aria-invalid={errors.title ? true : false}
-							className='add-note-container__input'
-							type='text'
-							id='title'
-							placeholder='Enter your title..'
-							autoComplete='off'
-							defaultValue={editOptionsStatus ? editData.title : ''}
-							{...register('title')}
-						/>
-						<p className='add-note-container__input-error'>{errors.title?.message}</p>
-					</div>
-					<div className='add-note-container__form-box'>
-						<label className='add-note-container__label' htmlFor='note'>
-							Note:
-						</label>
-						<textarea
-							aria-invalid={errors.note ? true : false}
-							className='add-note-container__textarea'
-							id='note'
-							placeholder='Enter your note..'
-							autoComplete='off'
-							defaultValue={editOptionsStatus ? editData.description : ''}
-							{...register('note')}></textarea>
-						<p className='add-note-container__input-error'>{errors.note?.message}</p>
-					</div>
-					<div className='add-note-container__button-box'>
-						<button className='add-note-container__form-submit' type='submit'>
-							{editOptionsStatus ? 'Edit' : 'Add'}
-						</button>
-						<button className='add-note-container__button' type='button' onClick={handleBack}>
+		<div className='add-note'>
+			<div className='add-note__container white-gradient'>
+				<h3 className='add-note__title'>{editOptionsStatus ? 'Edit note!' : 'Add note!'}</h3>
+				<hr className='add-note__strap' />
+				<form className='form' onSubmit={handleSubmit(onSubmit)}>
+					<FormInput
+						label='Title:'
+						inputName='title'
+						type='text'
+						placeholder='Enter your title..'
+						defaultValue={editOptionsStatus ? editData.title : ''}
+						children={errors.title?.message}
+						aria-invalid={errors.title ? true : false}
+						{...register('title')}
+					/>
+					<FormTextarea
+						label='Note:'
+						inputName='note'
+						placeholder='Enter your note..'
+						defaultValue={editOptionsStatus ? editData.description : ''}
+						children={errors.note?.message}
+						aria-invalid={errors.note ? true : false}
+						{...register('note')}
+					/>
+					<div className='add-note__button-box'>
+						<input className='add-note__submit' type='submit' value={editOptionsStatus ? 'Edit' : 'Add'} />
+						<button className='add-note__back-button' type='button' onClick={handleBack}>
 							Back
 						</button>
 					</div>

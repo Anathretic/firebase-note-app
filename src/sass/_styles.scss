@@ -94,18 +94,14 @@ body {
 	}
 }
 
-.login-container,
-.register-container,
-.add-note-container {
+.login,
+.register,
+.add-note {
 	padding: 3em 1em;
 	margin: auto;
 	width: 100%;
 
-	&__form {
-		width: 100%;
-	}
-
-	&__box {
+	&__container {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
@@ -121,8 +117,50 @@ body {
 		width: 90%;
 		border-color: colors.$border-color;
 	}
+}
 
-	&__form-box {
+.login,
+.register {
+	&__strap {
+		&:first-of-type {
+			margin-bottom: 1em;
+		}
+	}
+
+	&__form-toggle {
+		@include mixins.flex;
+		flex-direction: column;
+		padding: 1em 0 2em;
+
+		p {
+			padding-top: 1em;
+		}
+		button {
+			@include mixins.button;
+			margin-top: 1em;
+		}
+	}
+}
+
+.add-note {
+	&__button-box {
+		@include mixins.flex;
+		flex-direction: column;
+		padding: 2em 0;
+	}
+
+	&__submit,
+	&__back-button {
+		@include mixins.button;
+		margin: 1em;
+		width: 70%;
+	}
+}
+
+.form {
+	width: 100%;
+
+	&__box {
 		@include mixins.flex;
 		flex-direction: column;
 		padding: 1em;
@@ -156,48 +194,6 @@ body {
 		}
 	}
 
-	&__input-error {
-		padding-top: 0.25em;
-		height: 1em;
-		width: 100%;
-		color: colors.$error-color;
-		font-size: 0.8em;
-		text-align: center;
-	}
-
-	&__form-submit {
-		@include mixins.button;
-	}
-}
-
-.login-container,
-.register-container {
-	&__strap {
-		&:first-of-type {
-			margin-bottom: 1em;
-		}
-	}
-
-	&__form-toggle {
-		@include mixins.flex;
-		flex-direction: column;
-		padding: 1em 0 2em;
-
-		p {
-			padding-top: 1em;
-		}
-		button {
-			@include mixins.button;
-			margin-top: 1em;
-		}
-	}
-
-	&__form-submit {
-		margin: 1em 1em 1.25em;
-	}
-}
-
-.add-note-container {
 	&__textarea {
 		padding: 0.95em 3.25em 0.95em 0.75em;
 		width: 100%;
@@ -226,20 +222,18 @@ body {
 		}
 	}
 
-	&__button-box {
-		@include mixins.flex;
-		flex-direction: column;
-		padding: 2em 0;
+	&__input-error {
+		padding-top: 0.25em;
+		height: 1em;
+		width: 100%;
+		color: colors.$error-color;
+		font-size: 0.8em;
+		text-align: center;
 	}
 
-	&__form-submit,
-	&__button {
-		margin: 1em;
-		width: 70%;
-	}
-
-	&__button {
+	&__submit {
 		@include mixins.button;
+		margin: 1em 1em 1.25em;
 	}
 }
 

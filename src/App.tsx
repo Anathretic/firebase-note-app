@@ -10,7 +10,7 @@ import { Footer } from './components/Footer';
 import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
 import { getInitialLoginValue, setLogin, setLogout } from './redux/loginReduxSlice/loginSlice';
 import { getInitialErrorPopupValue } from './redux/errorPopupReduxSlice/errorPopupSlice';
-import { ErrorPopup } from './components/ErrorPopup';
+import { ErrorPopup } from './components/littleComponents/ErrorPopup';
 
 export const App: React.FC = () => {
 	const login = useAppSelector(getInitialLoginValue);
