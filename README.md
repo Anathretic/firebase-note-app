@@ -20,6 +20,6 @@ Addition of note editing based on delete and add functionality and sorting of no
 
 **NoSQL database:** [Firebase](https://firebase.google.com/)
 
-**Used:** HTML, SASS (CSS preprocessor), React (incl. Redux), TypeScript, Vite, Yup
+**Used:** HTML, SASS (CSS preprocessor), React (incl. Redux, React-Hook-Form), TypeScript, Vite, Yup
 
 **URL:** [Note-App](https://noteapp.online/)
