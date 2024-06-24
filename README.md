@@ -22,4 +22,4 @@ Addition of note editing based on delete and add functionality and sorting of no
 
 **Used:** HTML, SASS (CSS preprocessor), React (incl. Redux, React-Hook-Form), TypeScript, Vite, Yup
 
-**URL:** [Note-App](https://noteapp.online/)
+**URL:** [Note-App](https://with-firebase-note-app.vercel.app/)
