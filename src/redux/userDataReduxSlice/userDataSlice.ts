@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { DataArray } from '../../models/note.model';
+import { UserDataModel } from '../../models/reduxSlices.model';
 
-const initialState: DataArray = {
+const initialState: UserDataModel = {
 	data: [],
 };
 

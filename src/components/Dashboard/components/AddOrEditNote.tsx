@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { closeIt, getInitialAddOrEditNoteValue } from '../../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
-import { clearEditData } from '../../redux/editNoteDataReduxSlice/editNoteDataSlice';
-import { scrollToTop } from '../../utils/scrollToTop';
-import { AddOrEditNoteForm } from '../Forms/AddOrEditNoteForm';
+import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
+import { closeIt, getInitialAddOrEditNoteValue } from '../../../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
+import { clearEditData } from '../../../redux/editNoteDataReduxSlice/editNoteDataSlice';
+import { scrollToTop } from '../../../utils/scrollToTop';
+import { AddOrEditNoteForm } from '../../Forms/AddOrEditNoteForm';
 
 export const AddOrEditNote: React.FC = () => {
 	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);

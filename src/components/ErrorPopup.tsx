@@ -1,8 +1,8 @@
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { useFetchUserData } from '../../hooks/useFetchUserData';
-import { clearErrorValue, getInitialErrorPopupValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
+import { useFetchUserData } from '../hooks/useFetchUserData';
+import { clearErrorValue, getInitialErrorPopupValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 
-export const ErrorPopup: React.FC = () => {
+const ErrorPopup: React.FC = () => {
 	const [fetchUserData] = useFetchUserData();
 	const error = useAppSelector(getInitialErrorPopupValue);
 	const dispatch = useAppDispatch();
@@ -27,3 +27,5 @@ export const ErrorPopup: React.FC = () => {
 		</div>
 	);
 };
+
+export default ErrorPopup;

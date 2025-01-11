@@ -1,6 +1,6 @@
 import { FaGithubSquare, FaLinkedin, FaHome } from 'react-icons/fa';
 
-export const Footer: React.FC = () => {
+const Footer: React.FC = () => {
 	return (
 		<footer className='footer'>
 			<div className='footer__text'>
@@ -28,3 +28,5 @@ export const Footer: React.FC = () => {
 		</footer>
 	);
 };
+
+export default Footer;

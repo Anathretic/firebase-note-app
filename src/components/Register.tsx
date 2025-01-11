@@ -3,7 +3,7 @@ import { closeRegister } from '../redux/registerReduxSlice/registerSlice';
 import { scrollToTop } from '../utils/scrollToTop';
 import { RegisterForm } from './Forms/RegisterForm';
 
-export const Register: React.FC = () => {
+const Register: React.FC = () => {
 	const dispatch = useAppDispatch();
 
 	return (
@@ -28,3 +28,5 @@ export const Register: React.FC = () => {
 		</div>
 	);
 };
+
+export default Register;

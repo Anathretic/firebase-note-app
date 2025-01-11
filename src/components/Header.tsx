@@ -11,7 +11,7 @@ import { FaPlus } from 'react-icons/fa6';
 import { FaTrashAlt, FaRegStickyNote } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 
-export const Header: React.FC = () => {
+const Header: React.FC = () => {
 	const [deleteAllNotes] = useDeleteAllNotes();
 	const loginStatus = useAppSelector(getInitialLoginValue);
 	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
@@ -60,3 +60,5 @@ export const Header: React.FC = () => {
 		</header>
 	);
 };
+
+export default Header;

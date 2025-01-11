@@ -1,11 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
+import { ErrorPopupModel } from '../../models/reduxSlices.model';
 
-interface Error {
-	value: string;
-}
-
-const initialState: Error = {
+const initialState: ErrorPopupModel = {
 	value: '',
 };
 

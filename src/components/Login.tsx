@@ -3,7 +3,7 @@ import { openRegister } from '../redux/registerReduxSlice/registerSlice';
 import { scrollToTop } from '../utils/scrollToTop';
 import { LoginForm } from './Forms/LoginForm';
 
-export const Login: React.FC = () => {
+const Login: React.FC = () => {
 	const dispatch = useAppDispatch();
 
 	return (
@@ -28,3 +28,5 @@ export const Login: React.FC = () => {
 		</div>
 	);
 };
+
+export default Login;

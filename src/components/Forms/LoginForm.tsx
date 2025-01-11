@@ -5,7 +5,7 @@ import { setLogin } from '../../redux/loginReduxSlice/loginSlice';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { loginSchema } from '../../schemas/schemas';
-import { LoginFormModel } from '../../models/formElements.model';
+import { LoginFormModel } from '../../models/forms.model';
 import { FormInput, FormSubmit } from './components/FormElements';
 import { loginFormInputsConfig } from './inputsConfig/inputsConfig';
 

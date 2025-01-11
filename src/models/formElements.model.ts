@@ -1,4 +1,5 @@
 import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
+import { AddOrEditNoteFormModel, LoginFormModel, RegisterFormModel } from './forms.model';
 
 type Form = LoginFormModel | RegisterFormModel | AddOrEditNoteFormModel;
 type ErrorMessage = string | FieldError | Merge<FieldError, FieldErrorsImpl<Form>> | undefined;
@@ -14,25 +15,4 @@ export interface InputAndTextareaModel {
 
 export interface SubmitModel {
 	value: string;
-}
-
-export interface RegisterFormModel {
-	email: string;
-	password: string;
-	name: string;
-	confirmPassword: string;
-}
-
-export interface LoginFormModel {
-	email: string;
-	password: string;
-}
-
-export interface AddOrEditNoteComponentModel {
-	handleBack: () => void;
-}
-
-export interface AddOrEditNoteFormModel {
-	title: string;
-	note: string;
 }
