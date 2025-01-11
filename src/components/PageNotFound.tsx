@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { scrollToTop } from '../utils/scrollToTop';
 
-export const PageNotFound: React.FC = () => {
+const PageNotFound: React.FC = () => {
 	return (
 		<div className='notfound'>
 			<img className='notfound__img' src='/notfound-img.svg' alt='Page not found image' />
@@ -14,3 +14,5 @@ export const PageNotFound: React.FC = () => {
 		</div>
 	);
 };
+
+export default PageNotFound;

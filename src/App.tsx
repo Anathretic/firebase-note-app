@@ -4,11 +4,7 @@ import { auth } from './firebase/firebaseClient';
 import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
 import { getInitialLoginValue, setLogin, setLogout } from './redux/loginReduxSlice/loginSlice';
 import { getInitialErrorPopupValue } from './redux/errorPopupReduxSlice/errorPopupSlice';
-import { Header } from './components/Header';
-import { LoginAndRegisterPanel } from './components/LoginAndRegisterPanel';
-import { Dashboard } from './components/Dashboard';
-import { Footer } from './components/Footer';
-import { ErrorPopup } from './components/littleComponents/ErrorPopup';
+import { Dashboard, ErrorPopup, Footer, Header, LoginAndRegisterPanel } from './components';
 
 export const App: React.FC = () => {
 	const login = useAppSelector(getInitialLoginValue);

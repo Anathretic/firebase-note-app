@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from '../../firebase/firebaseClient';
-import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
-import { useDeleteNote } from '../../hooks/noteHooks';
-import { useRandomGreeting } from '../../hooks/useRandomGreeting';
-import { getInitialUserDataValue } from '../../redux/userDataReduxSlice/userDataSlice';
-import { getInitialGreetingValue } from '../../redux/randomGreetingReduxSlice/randomGreetingSlice';
-import { editNote } from '../../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
-import { setEditData } from '../../redux/editNoteDataReduxSlice/editNoteDataSlice';
-import { scrollToTop } from '../../utils/scrollToTop';
+import { auth } from '../../../firebase/firebaseClient';
+import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
+import { useDeleteNote } from '../../../hooks/noteHooks';
+import { useRandomGreeting } from '../../../hooks/useRandomGreeting';
+import { getInitialUserDataValue } from '../../../redux/userDataReduxSlice/userDataSlice';
+import { getInitialGreetingValue } from '../../../redux/randomGreetingReduxSlice/randomGreetingSlice';
+import { editNote } from '../../../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
+import { setEditData } from '../../../redux/editNoteDataReduxSlice/editNoteDataSlice';
+import { scrollToTop } from '../../../utils/scrollToTop';
 import { TiDeleteOutline, TiPencil } from 'react-icons/ti';
 
 export const NotesArray: React.FC = () => {

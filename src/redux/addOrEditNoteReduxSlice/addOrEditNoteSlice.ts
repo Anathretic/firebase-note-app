@@ -1,13 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
+import { AddOrEditNoteModel } from '../../models/reduxSlices.model';
 
-type Status = 'addNote' | 'editNote' | '';
-
-interface AddOrEdit {
-	value: Status;
-}
-
-const initialState: AddOrEdit = {
+const initialState: AddOrEditNoteModel = {
 	value: '',
 };
 
@@ -29,6 +24,6 @@ const addOrEditNoteSlice = createSlice({
 
 export const { addNote, editNote, closeIt } = addOrEditNoteSlice.actions;
 
-export const getInitialAddOrEditNoteValue = (state: RootState) => state.addOrEditNoteReduxStore.value
+export const getInitialAddOrEditNoteValue = (state: RootState) => state.addOrEditNoteReduxStore.value;
 
 export default addOrEditNoteSlice;

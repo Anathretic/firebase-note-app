@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
-import { BooleanReduxState } from '../../models/boolean.model';
+import { LoginAndRegisterModel } from '../../models/reduxSlices.model';
 
-const initialState: BooleanReduxState = {
+const initialState: LoginAndRegisterModel = {
 	value: false,
 };
 

@@ -1,5 +1,5 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-import { LoginFormModel, RegisterFormModel } from '../../../models/formElements.model';
+import { LoginFormModel, RegisterFormModel } from '../../../models/forms.model';
 
 export const registerFormInputsConfig = (errors: FieldErrors, register: UseFormRegister<RegisterFormModel>) => [
 	{

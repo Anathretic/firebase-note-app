@@ -7,7 +7,7 @@ import { db } from '../../firebase/firebaseConfig';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
 import { registerSchema } from '../../schemas/schemas';
-import { RegisterFormModel } from '../../models/formElements.model';
+import { RegisterFormModel } from '../../models/forms.model';
 import { FormInput, FormSubmit } from './components/FormElements';
 import { registerFormInputsConfig } from './inputsConfig/inputsConfig';
 

@@ -5,7 +5,7 @@ import { useAddNote, useEditNote } from '../../hooks/noteHooks';
 import { getInitialAddOrEditNoteValue } from '../../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
 import { getInitialEditNoteDataValue } from '../../redux/editNoteDataReduxSlice/editNoteDataSlice';
 import { noteSchema } from '../../schemas/schemas';
-import { AddOrEditNoteFormModel, AddOrEditNoteComponentModel } from '../../models/formElements.model';
+import { AddOrEditNoteComponentModel, AddOrEditNoteFormModel } from '../../models/forms.model';
 import { FormInput, FormTextarea } from './components/FormElements';
 
 export const AddOrEditNoteForm: React.FC<AddOrEditNoteComponentModel> = ({ handleBack }) => {

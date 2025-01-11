@@ -1,11 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
+import { RandomGreetingModel } from '../../models/reduxSlices.model';
 
-interface Greeting {
-	value: string;
-}
-
-const initialState: Greeting = {
+const initialState: RandomGreetingModel = {
 	value: '',
 };
 
