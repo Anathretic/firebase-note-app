@@ -5,9 +5,17 @@ export interface RegisterFormModel {
 	confirmPassword: string;
 }
 
+export interface LoginComponentModel {
+	setPasswordReset: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export interface LoginFormModel {
 	email: string;
 	password: string;
+}
+
+export interface ResetPasswordFormModel {
+	email: string;
 }
 
 export interface AddOrEditNoteComponentModel {
