@@ -73,6 +73,10 @@
 				background-color: colors.$second-color;
 			}
 		}
+
+		&__special-text {
+			font-size: 1.1rem;
+		}
 	}
 
 	.dashboard {
@@ -168,5 +172,11 @@
 	.register,
 	.add-or-edit-note {
 		width: 35%;
+	}
+
+	.form {
+		&__password-reset-box {
+			padding: 0;
+		}
 	}
 }
