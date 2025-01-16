@@ -8,19 +8,19 @@ const errorMessage = { requiredField: 'This field is required!' };
 export const registerSchema = yup.object({
 	name: yup
 		.string()
-		.min(3, 'Name should consists of at least 3 letters!')
-		.max(16, 'Name should be a maximum of 16 characters!')
+		.min(3, 'Must be at least 3 characters long!')
+		.max(16, 'Must be a maximum of 16 characters!')
 		.minUppercase(1, "You should start with a capital letter, shouldn't you?")
 		.matches(/^[a-zA-Z]+$/, 'Only letters without using spaces!')
 		.required(errorMessage.requiredField),
 	email: yup.string().email('Enter a valid e-mail!').required(errorMessage.requiredField),
 	password: yup
 		.string()
-		.min(8, 'The password consists of a minimum of 8 characters!')
-		.minLowercase(1, 'Password must contain at least 1 lower case letter!')
-		.minUppercase(1, 'Password must contain at least 1 upper case letter!')
-		.minNumbers(1, 'Password must contain at least 1 number!')
-		.minSymbols(1, 'Password must contain at least 1 special character!')
+		.min(8, 'Must be at least 8 characters long!')
+		.minLowercase(1, 'Must be at least 1 lower case letter!')
+		.minUppercase(1, 'Must be at least 1 upper case letter!')
+		.minNumbers(1, 'Must be at least 1 number!')
+		.minSymbols(1, 'Must be at least 1 special character!')
 		.required(errorMessage.requiredField),
 	confirmPassword: yup
 		.string()
@@ -29,6 +29,8 @@ export const registerSchema = yup.object({
 });
 
 export const loginSchema = registerSchema.pick(['email', 'password']);
+
+export const resetPasswordSchema = registerSchema.pick(['email']);
 
 export const noteSchema = yup.object({
 	title: yup

@@ -1,3 +1,12 @@
+@media screen and (max-width: 399px) {
+	.form {
+		&__password-reset-btn {
+			bottom: 5px;
+			right: 0;
+		}
+	}
+}
+
 @media screen and (min-width: 400px) {
 	.add-or-edit-note {
 		&__submit,
@@ -16,6 +25,14 @@
 	.notes-array {
 		&__item {
 			width: 300px;
+		}
+	}
+}
+
+@media screen and (min-width: 500px) {
+	.form {
+		&__special-text {
+			padding: 1rem 3rem;
 		}
 	}
 }
@@ -40,6 +57,18 @@
 	.notfound {
 		&__img {
 			width: 80%;
+		}
+	}
+}
+
+@media screen and (min-width: 640px) {
+	.form {
+		&__password-reset-box {
+			padding: 1em 0 0;
+		}
+
+		&__password-reset-btn {
+			bottom: 7px;
 		}
 	}
 }

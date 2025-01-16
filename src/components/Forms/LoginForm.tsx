@@ -8,8 +8,13 @@ import { loginSchema } from '../../schemas/schemas';
 import { LoginFormModel } from '../../models/forms.model';
 import { FormInput, FormSubmit } from './components/FormElements';
 import { loginFormInputsConfig } from './inputsConfig/inputsConfig';
+import { scrollToTop } from '../../utils/scrollToTop';
 
-export const LoginForm: React.FC = () => {
+interface LoginComponentModel {
+	setPasswordReset: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const LoginForm: React.FC<LoginComponentModel> = ({ setPasswordReset }) => {
 	const {
 		register,
 		handleSubmit,
@@ -50,6 +55,17 @@ export const LoginForm: React.FC = () => {
 					{...input.register}
 				/>
 			))}
+			<div className='form__password-reset-box'>
+				<button
+					className='form__password-reset-btn'
+					type='button'
+					onClick={() => {
+						setPasswordReset(true);
+						scrollToTop();
+					}}>
+					Forgot your password?
+				</button>
+			</div>
 			<FormSubmit value='Login' />
 		</form>
 	);
