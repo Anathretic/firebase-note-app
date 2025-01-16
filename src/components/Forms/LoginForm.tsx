@@ -5,14 +5,10 @@ import { setLogin } from '../../redux/loginReduxSlice/loginSlice';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { loginSchema } from '../../schemas/schemas';
-import { LoginFormModel } from '../../models/forms.model';
+import { LoginComponentModel, LoginFormModel } from '../../models/forms.model';
 import { FormInput, FormSubmit } from './components/FormElements';
 import { loginFormInputsConfig } from './inputsConfig/inputsConfig';
 import { scrollToTop } from '../../utils/scrollToTop';
-
-interface LoginComponentModel {
-	setPasswordReset: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
 export const LoginForm: React.FC<LoginComponentModel> = ({ setPasswordReset }) => {
 	const {

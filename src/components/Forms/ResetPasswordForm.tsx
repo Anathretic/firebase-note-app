@@ -1,16 +1,12 @@
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { sendPasswordResetEmail, fetchSignInMethodsForEmail } from 'firebase/auth';
-import { auth } from '../../firebase/firebaseClient';
+import { checkIfAccountExists, passwordReset } from '../../firebase/firebaseClient';
 import { FormInput, FormSubmit } from './components/FormElements';
 import { resetPasswordSchema } from '../../schemas/schemas';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
-import { useState } from 'react';
-
-interface ResetPasswordFormModel {
-	email: string;
-}
+import { ResetPasswordFormModel } from '../../models/forms.model';
 
 export const ResetPasswordForm: React.FC = () => {
 	const [buttonValue, setButtonValue] = useState('Send');
@@ -29,11 +25,11 @@ export const ResetPasswordForm: React.FC = () => {
 
 	const onSubmit: SubmitHandler<ResetPasswordFormModel> = async ({ email }) => {
 		try {
-			const methods = await fetchSignInMethodsForEmail(auth, email);
+			const methods = await checkIfAccountExists(email);
 			if (methods.length === 0) {
 				dispatch(setErrorValue('Email does not exist!'));
 			} else {
-				await sendPasswordResetEmail(auth, email);
+				await passwordReset(email);
 				reset();
 				setButtonValue('Sent');
 				setTimeout(() => {
