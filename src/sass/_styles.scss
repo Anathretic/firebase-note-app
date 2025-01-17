@@ -201,15 +201,14 @@ body {
 
 	&__password-reset-box {
 		position: relative;
-		padding: 0.5em 1em;
 		height: 1px;
 		width: 90%;
 	}
 
 	&__password-reset-btn {
 		position: absolute;
-		right: 1rem;
-		bottom: 5px;
+		right: 0.9rem;
+		top: -6.15rem;
 		color: colors.$white-color;
 		background-color: transparent;
 		font-family: 'Nunito', sans-serif;

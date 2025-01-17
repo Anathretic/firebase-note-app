@@ -10,6 +10,8 @@ import { FormInput, FormSubmit } from './components/FormElements';
 import { loginFormInputsConfig } from './inputsConfig/inputsConfig';
 import { scrollToTop } from '../../utils/scrollToTop';
 
+import { FaRegQuestionCircle } from 'react-icons/fa';
+
 export const LoginForm: React.FC<LoginComponentModel> = ({ setPasswordReset }) => {
 	const {
 		register,
@@ -59,7 +61,7 @@ export const LoginForm: React.FC<LoginComponentModel> = ({ setPasswordReset }) =
 						setPasswordReset(true);
 						scrollToTop();
 					}}>
-					Forgot your password?
+					<FaRegQuestionCircle fontSize={18} />
 				</button>
 			</div>
 			<FormSubmit value='Login' />
