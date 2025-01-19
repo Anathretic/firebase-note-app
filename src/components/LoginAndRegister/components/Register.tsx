@@ -1,7 +1,7 @@
-import { useAppDispatch } from '../hooks/reduxHooks';
-import { closeRegister } from '../redux/registerReduxSlice/registerSlice';
-import { scrollToTop } from '../utils/scrollToTop';
-import { RegisterForm } from './Forms/RegisterForm';
+import { useAppDispatch } from '../../../hooks/reduxHooks';
+import { closeRegister } from '../../../redux/registerReduxSlice/registerSlice';
+import { scrollToTop } from '../../../utils/scrollToTop';
+import { RegisterForm } from '../../Forms/RegisterForm';
 
 const Register: React.FC = () => {
 	const dispatch = useAppDispatch();
