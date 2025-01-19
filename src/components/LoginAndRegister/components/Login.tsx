@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useAppDispatch } from '../hooks/reduxHooks';
-import { openRegister } from '../redux/registerReduxSlice/registerSlice';
-import { scrollToTop } from '../utils/scrollToTop';
-import { LoginForm } from './Forms/LoginForm';
-import { ResetPasswordForm } from './Forms/ResetPasswordForm';
+import { useAppDispatch } from '../../../hooks/reduxHooks';
+import { openRegister } from '../../../redux/registerReduxSlice/registerSlice';
+import { scrollToTop } from '../../../utils/scrollToTop';
+import { LoginForm } from '../../Forms/LoginForm';
+import { ResetPasswordForm } from '../../Forms/ResetPasswordForm';
 
 const Login: React.FC = () => {
 	const [passwordReset, setPasswordReset] = useState(false);
@@ -12,7 +12,7 @@ const Login: React.FC = () => {
 	return (
 		<div className='login'>
 			<div className='login__container white-gradient'>
-				<h2 className='login__title'>Login</h2>
+				<h2 className='login__title'>{passwordReset ? 'Password reset' : 'Login'}</h2>
 				<hr className='login__strap' />
 				{!passwordReset ? (
 					<>
