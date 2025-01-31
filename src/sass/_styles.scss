@@ -97,14 +97,28 @@ body {
 .login,
 .register,
 .add-or-edit-note {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	padding: 3em 1em;
 	margin: auto;
 	width: 100%;
+	min-height: 75vh;
+
+	&__wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		width: 100%;
+	}
 
 	&__container {
 		display: flex;
 		align-items: center;
 		flex-direction: column;
+		width: 100%;
+		max-width: 550px;
 	}
 
 	&__title {
@@ -271,6 +285,9 @@ body {
 
 .dashboard {
 	padding: 1em;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1615px;
 }
 
 .notes-array {

@@ -12,7 +12,11 @@ const Dashboard: React.FC = () => {
 	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
 
 	useEffect(() => {
-		fetchUserData();
+		const fetchingTimeout = setTimeout(() => {
+			fetchUserData();
+		}, 500);
+
+		return () => clearTimeout(fetchingTimeout);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [addOrEditNoteStatus, loginStatus]);
 

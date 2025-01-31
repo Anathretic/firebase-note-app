@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { updateProfile } from 'firebase/auth';
 import { collection, doc, setDoc, Timestamp } from 'firebase/firestore';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { auth, registerUser } from '../../firebase/firebaseClient';
+import { registerUser } from '../../firebase/firebaseClient';
 import { db } from '../../firebase/firebaseConfig';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
@@ -25,27 +25,26 @@ export const RegisterForm: React.FC = () => {
 	const onSubmit: SubmitHandler<RegisterFormModel> = async ({ name, email, password }) => {
 		try {
 			const response = await registerUser(email, password);
-
-			const currentUser = auth.currentUser;
-			if (currentUser) {
-				await updateProfile(currentUser, { displayName: name });
-			}
-
 			const user = response.user;
-			const usersRef = collection(db, 'users');
 
-			await setDoc(doc(usersRef, `${user.uid}`), {
-				uid: user.uid,
-				email: user.email,
-				notes: [
-					{
-						id: 'test-note',
-						title: `Hello there!`,
-						description: `I'm your first note.. Looks like everything works! Enjoy your work ${user.displayName}! :)`,
-						date: Timestamp.fromDate(new Date()).seconds,
-					},
-				],
-			});
+			if (user) {
+				await updateProfile(user, { displayName: name });
+
+				const usersRef = collection(db, 'users');
+
+				await setDoc(doc(usersRef, `${user.uid}`), {
+					uid: user.uid,
+					email: user.email,
+					notes: [
+						{
+							id: 'test-note',
+							title: `Hello there!`,
+							description: `I'm your first note.. Looks like everything works! Enjoy your work ${user.displayName}! :)`,
+							date: Timestamp.fromDate(new Date()).seconds,
+						},
+					],
+				});
+			}
 		} catch (err) {
 			if (err instanceof Error) {
 				if (err.message.includes('email-already-in-use')) {
