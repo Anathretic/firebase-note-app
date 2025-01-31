@@ -11,7 +11,13 @@ export const useFetchUserData = () => {
 	const dispatch = useAppDispatch();
 
 	const fetchUserData = async () => {
-		await user?.reload();
+		if (!user?.uid) {
+			dispatch(setErrorValue('User is not authenticated.. Refresh!'));
+			return;
+		}
+
+		await user.reload();
+
 		try {
 			const dataQuery = query(collection(db, 'users'), where('uid', '==', user?.uid));
 			const getData = await getDocs(dataQuery);
