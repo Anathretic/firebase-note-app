@@ -11,7 +11,6 @@
 }
 
 html {
-	margin-right: calc(-1 * (100vw - 100%));
 	overflow-x: hidden;
 	scroll-behavior: smooth;
 }
@@ -20,10 +19,11 @@ body {
 	font-family: 'Nunito', sans-serif;
 	color: colors.$white-color;
 	background-color: colors.$black-color;
+	overflow: hidden;
 }
 
 .scroll-block {
-	overflow-y: hidden;
+	overflow: hidden;
 }
 
 .error-popup {
@@ -149,9 +149,11 @@ body {
 		p {
 			padding-top: 1em;
 		}
+
 		button {
 			@include mixins.button;
 			margin-top: 1em;
+			width: 156px;
 		}
 	}
 }
@@ -271,6 +273,7 @@ body {
 	&__submit {
 		@include mixins.button;
 		margin: 1em 1em 1.25em;
+		width: 156px;
 	}
 
 	&__special-text {

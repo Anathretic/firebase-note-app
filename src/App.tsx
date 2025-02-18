@@ -24,7 +24,7 @@ export const App: React.FC = () => {
 	}, []);
 
 	return (
-		<div className={`app ${error && 'scroll-block'}`}>
+		<div className='app'>
 			{error && <ErrorPopup />}
 			<Header />
 			<main className='app-container'>{!login ? <LoginAndRegisterPanel /> : <Dashboard />}</main>

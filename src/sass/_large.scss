@@ -34,6 +34,7 @@
 	.login,
 	.register {
 		&__form-toggle button {
+			width: 180px;
 			font-size: 1.1em;
 
 			&:hover {
@@ -71,6 +72,7 @@
 		}
 
 		&__submit {
+			width: 180px;
 			font-size: 1.1em;
 
 			&:hover {
@@ -140,7 +142,6 @@
 		}
 
 		&__btn {
-			padding: 1em 4em;
 			font-size: 1.2em;
 
 			&:hover {
@@ -159,13 +160,11 @@
 	}
 }
 
-@media screen and (min-width: 1440px) {
-	body {
-		padding-right: 17px;
-	}
-}
-
 @media screen and (min-width: 1536px) {
+	body {
+		margin-right: calc(-1 * (100vw - 100%));
+	}
+
 	.error-popup {
 		&__box {
 			width: 35%;
@@ -176,11 +175,5 @@
 	.register,
 	.add-or-edit-note {
 		width: 35%;
-	}
-
-	.form {
-		&__password-reset-box {
-			padding: 0;
-		}
 	}
 }

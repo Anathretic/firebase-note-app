@@ -36,7 +36,7 @@ export const NotesArray: React.FC = () => {
 	}, []);
 
 	return (
-		<div className='notes-array'>
+		<section className='notes-array'>
 			<div className='notes-array__username'>
 				<p>
 					{randomGreetingValue}
@@ -61,6 +61,6 @@ export const NotesArray: React.FC = () => {
 					</div>
 				))}
 			</div>
-		</div>
+		</section>
 	);
 };

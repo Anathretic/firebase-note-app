@@ -2,7 +2,7 @@
 
 ## About
 
-This is the second version of my note app, which is also a showcase of the skills I have mastered and the tools and solutions I have learned so far.
+This is the second version of my note app, which is also a showcase of the skills I have mastered and the tools and solutions I have learned so far - it was a really good Redux exercise!
 
 The application has been equipped with firebase, including auth, firestore and security, so the user to use it - must create an account. Once the account is created, there is an automatic login (Firebase behavior), the application greets the user via special note and the user can already create new notes and delete existing ones. All data is stored in Firestore (NoSQL database).
 

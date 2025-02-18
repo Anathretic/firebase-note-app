@@ -10,7 +10,7 @@ const Login: React.FC = () => {
 	const dispatch = useAppDispatch();
 
 	return (
-		<div className='login'>
+		<section className='login'>
 			<div className='login__container white-gradient'>
 				<div className='login__wrapper'>
 					<h2 className='login__title'>{passwordReset ? 'Password reset' : 'Login'}</h2>
@@ -33,7 +33,7 @@ const Login: React.FC = () => {
 						</>
 					) : (
 						<>
-							<ResetPasswordForm />
+							<ResetPasswordForm setPasswordReset={setPasswordReset} />
 							<hr className='login__strap' />
 							<div className='login__form-toggle'>
 								<p>But if you remember..</p>
@@ -50,7 +50,7 @@ const Login: React.FC = () => {
 					)}
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 
