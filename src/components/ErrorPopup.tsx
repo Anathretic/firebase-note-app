@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
 import { useFetchUserData } from '../hooks/useFetchUserData';
 import { clearErrorValue, getInitialErrorPopupValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
@@ -15,6 +16,13 @@ const ErrorPopup: React.FC = () => {
 			dispatch(clearErrorValue());
 		}
 	};
+
+	useEffect(() => {
+		document.documentElement.classList.add('scroll-block');
+		return () => {
+			document.documentElement.classList.remove('scroll-block');
+		};
+	}, []);
 
 	return (
 		<div className='error-popup'>

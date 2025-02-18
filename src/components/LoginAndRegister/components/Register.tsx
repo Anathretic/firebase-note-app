@@ -7,7 +7,7 @@ const Register: React.FC = () => {
 	const dispatch = useAppDispatch();
 
 	return (
-		<div className='register'>
+		<section className='register'>
 			<div className='register__container white-gradient'>
 				<h2 className='register__title'>Register</h2>
 				<hr className='register__strap' />
@@ -25,7 +25,7 @@ const Register: React.FC = () => {
 					</button>
 				</div>
 			</div>
-		</div>
+		</section>
 	);
 };
 

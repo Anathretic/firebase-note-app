@@ -6,9 +6,10 @@ import { FormInput, FormSubmit } from './components/FormElements';
 import { resetPasswordSchema } from '../../schemas/schemas';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
-import { ResetPasswordFormModel } from '../../models/forms.model';
+import { LoginComponentModel, ResetPasswordFormModel } from '../../models/forms.model';
+import { scrollToTop } from '../../utils/scrollToTop';
 
-export const ResetPasswordForm: React.FC = () => {
+export const ResetPasswordForm: React.FC<LoginComponentModel> = ({ setPasswordReset }) => {
 	const [buttonValue, setButtonValue] = useState('Send');
 	const {
 		register,
@@ -31,9 +32,11 @@ export const ResetPasswordForm: React.FC = () => {
 			} else {
 				await passwordReset(email);
 				reset();
-				setButtonValue('Sent');
+				setButtonValue('Done');
 				setTimeout(() => {
 					setButtonValue('Send');
+					setPasswordReset(false);
+					scrollToTop();
 				}, 2500);
 			}
 		} catch (err) {
@@ -47,7 +50,7 @@ export const ResetPasswordForm: React.FC = () => {
 		<form className='form' onSubmit={handleSubmit(onSubmit)}>
 			<p className='form__special-text'>
 				If you forgot your password send your email and you will receive a link to reset it. Only works if{' '}
-				<span>you have an account</span> with the site!
+				<span>you have an account!</span>
 			</p>
 			<FormInput
 				label='E-mail:'
