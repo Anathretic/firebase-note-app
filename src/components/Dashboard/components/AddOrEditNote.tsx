@@ -4,7 +4,7 @@ import { clearEditData } from '../../../redux/editNoteDataReduxSlice/editNoteDat
 import { scrollToTop } from '../../../utils/scrollToTop';
 import { AddOrEditNoteForm } from '../../Forms/AddOrEditNoteForm';
 
-export const AddOrEditNote: React.FC = () => {
+const AddOrEditNote: React.FC = () => {
 	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
 	const dispatch = useAppDispatch();
 
@@ -26,3 +26,5 @@ export const AddOrEditNote: React.FC = () => {
 		</div>
 	);
 };
+
+export default AddOrEditNote;

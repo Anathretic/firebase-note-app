@@ -22,6 +22,7 @@
 	}
 
 	.login,
+	.reset-password,
 	.register,
 	.add-or-edit-note {
 		width: 50%;
@@ -32,8 +33,10 @@
 	}
 
 	.login,
+	.reset-password,
 	.register {
-		&__form-toggle button {
+		&__form-toggle button,
+		&__form-toggle a {
 			width: 180px;
 			font-size: 1.1em;
 
@@ -172,6 +175,7 @@
 	}
 
 	.login,
+	.reset-password,
 	.register,
 	.add-or-edit-note {
 		width: 35%;

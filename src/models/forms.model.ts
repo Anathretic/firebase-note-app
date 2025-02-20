@@ -5,10 +5,6 @@ export interface RegisterFormModel {
 	confirmPassword: string;
 }
 
-export interface LoginComponentModel {
-	setPasswordReset: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
 export interface LoginFormModel {
 	email: string;
 	password: string;

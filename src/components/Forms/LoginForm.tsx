@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginUser } from '../../firebase/firebaseClient';
@@ -5,14 +6,13 @@ import { setLogin } from '../../redux/loginReduxSlice/loginSlice';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { loginSchema } from '../../schemas/schemas';
-import { LoginComponentModel, LoginFormModel } from '../../models/forms.model';
+import { LoginFormModel } from '../../models/forms.model';
 import { FormInput, FormSubmit } from './components/FormElements';
 import { loginFormInputsConfig } from './inputsConfig/inputsConfig';
 import { scrollToTop } from '../../utils/scrollToTop';
-
 import { FaRegQuestionCircle } from 'react-icons/fa';
 
-export const LoginForm: React.FC<LoginComponentModel> = ({ setPasswordReset }) => {
+export const LoginForm: React.FC = () => {
 	const {
 		register,
 		handleSubmit,
@@ -54,15 +54,14 @@ export const LoginForm: React.FC<LoginComponentModel> = ({ setPasswordReset }) =
 				/>
 			))}
 			<div className='form__password-reset-box'>
-				<button
+				<Link
+					to='/forgot-password'
 					className='form__password-reset-btn'
-					type='button'
 					onClick={() => {
-						setPasswordReset(true);
 						scrollToTop();
 					}}>
 					<FaRegQuestionCircle fontSize={18} />
-				</button>
+				</Link>
 			</div>
 			<FormSubmit value='Login' />
 		</form>

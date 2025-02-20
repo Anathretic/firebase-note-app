@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { checkIfAccountExists, passwordReset } from '../../firebase/firebaseClient';
@@ -6,10 +7,10 @@ import { FormInput, FormSubmit } from './components/FormElements';
 import { resetPasswordSchema } from '../../schemas/schemas';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
-import { LoginComponentModel, ResetPasswordFormModel } from '../../models/forms.model';
+import { ResetPasswordFormModel } from '../../models/forms.model';
 import { scrollToTop } from '../../utils/scrollToTop';
 
-export const ResetPasswordForm: React.FC<LoginComponentModel> = ({ setPasswordReset }) => {
+export const ResetPasswordForm: React.FC = () => {
 	const [buttonValue, setButtonValue] = useState('Send');
 	const {
 		register,
@@ -22,6 +23,7 @@ export const ResetPasswordForm: React.FC<LoginComponentModel> = ({ setPasswordRe
 		},
 		resolver: yupResolver(resetPasswordSchema),
 	});
+	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 
 	const onSubmit: SubmitHandler<ResetPasswordFormModel> = async ({ email }) => {
@@ -35,7 +37,7 @@ export const ResetPasswordForm: React.FC<LoginComponentModel> = ({ setPasswordRe
 				setButtonValue('Done');
 				setTimeout(() => {
 					setButtonValue('Send');
-					setPasswordReset(false);
+					navigate('/');
 					scrollToTop();
 				}, 2500);
 			}

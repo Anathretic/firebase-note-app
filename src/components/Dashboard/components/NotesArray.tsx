@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase/firebaseClient';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
@@ -11,7 +11,7 @@ import { setEditData } from '../../../redux/editNoteDataReduxSlice/editNoteDataS
 import { scrollToTop } from '../../../utils/scrollToTop';
 import { TiDeleteOutline, TiPencil } from 'react-icons/ti';
 
-export const NotesArray: React.FC = () => {
+const NotesArray: React.FC = () => {
 	const [user] = useAuthState(auth);
 	const [deleteNote] = useDeleteNote();
 	const [randomGreeting] = useRandomGreeting();
@@ -19,10 +19,12 @@ export const NotesArray: React.FC = () => {
 	const randomGreetingValue = useAppSelector(getInitialGreetingValue);
 	const dispatch = useAppDispatch();
 
-	// Shallow copy of userDataNotesArray
-	const userData = [...userDataNotesArray];
-	// Sorting the data to fool the users in 100% into thinking they are editing a note
-	const sortedUserData = userData.sort((a, b) => a.date - b.date);
+	const sortedUserData = useMemo(() => {
+		// Shallow copy of userDataNotesArray
+		const userData = [...userDataNotesArray];
+		// Sorting the data to fool the users in 100% into thinking they are editing a note
+		return userData.sort((a, b) => a.date - b.date);
+	}, [userDataNotesArray]);
 
 	const handleEdit = (data: object) => {
 		dispatch(editNote());
@@ -64,3 +66,5 @@ export const NotesArray: React.FC = () => {
 		</section>
 	);
 };
+
+export default NotesArray;
