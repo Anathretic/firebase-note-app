@@ -92,6 +92,14 @@
 		padding: 3em;
 	}
 
+	.loader {
+		padding: 10em 0 7em;
+
+		&__spinner {
+			font-size: 60px;
+		}
+	}
+
 	.notes-array {
 		&__username {
 			font-size: 1.2em;

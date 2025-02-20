@@ -5,7 +5,7 @@ import { auth } from './firebase/firebaseClient';
 import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
 import { getInitialLoginValue, setLogin, setLogout } from './redux/loginReduxSlice/loginSlice';
 import { getInitialErrorPopupValue } from './redux/errorPopupReduxSlice/errorPopupSlice';
-import { ErrorPopup, Footer, Header, LoginAndRegisterPanel, PageNotFound, ResetPassword } from './components';
+import { ErrorPopup, Footer, Header, Loader, LoginAndRegisterPanel, PageNotFound, ResetPassword } from './components';
 
 const Dashboard = lazy(() => import('./components/Dashboard/Dashboard'));
 
@@ -47,7 +47,7 @@ export const App: React.FC = () => {
 								{!login ? (
 									<LoginAndRegisterPanelComponent />
 								) : (
-									<Suspense fallback={<div>Ładownaie..</div>}>
+									<Suspense fallback={<Loader />}>
 										<Dashboard />
 									</Suspense>
 								)}
