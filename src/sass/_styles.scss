@@ -301,6 +301,24 @@ body {
 	max-width: 1615px;
 }
 
+.loader {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 7em 0;
+
+	&__spinner {
+		position: relative;
+		width: 1em;
+		height: 1em;
+		color: colors.$white-color;
+		font-size: 50px;
+		border-radius: 50%;
+		animation: spin-animation 1.7s infinite ease, round-animation 1.7s infinite ease;
+		overflow: hidden;
+	}
+}
+
 .notes-array {
 	&__container {
 		display: flex;
