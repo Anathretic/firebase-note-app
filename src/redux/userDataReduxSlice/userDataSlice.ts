@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 import { UserDataModel } from '../../models/reduxSlices.model';
 
@@ -21,6 +21,10 @@ const userDataSlice = createSlice({
 
 export const { setUserData, clearUserData } = userDataSlice.actions;
 
-export const getInitialUserDataValue = (state: RootState) => state.userDataReduxStore.data;
+const getInitialUserDataValue = (state: RootState) => state.userDataReduxStore.data;
+
+export const getSortedUserData = createSelector([getInitialUserDataValue], userData => {
+	return [...userData].sort((a, b) => a.date - b.date);
+});
 
 export default userDataSlice;

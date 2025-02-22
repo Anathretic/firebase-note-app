@@ -19,7 +19,7 @@ const AddOrEditNote: React.FC = () => {
 	return (
 		<div className='add-or-edit-note'>
 			<div className='add-or-edit-note__container white-gradient'>
-				<h3 className='add-or-edit-note__title'>{addOrEditNoteStatus === 'editNote' ? 'Edit note!' : 'Add note!'}</h3>
+				<h2 className='add-or-edit-note__title'>{addOrEditNoteStatus === 'editNote' ? 'Edit note!' : 'Add note!'}</h2>
 				<hr className='add-or-edit-note__strap' />
 				<AddOrEditNoteForm handleBack={handleBack} />
 			</div>

@@ -1,12 +1,15 @@
-import { memo, useEffect } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useAppSelector } from '../../hooks/reduxHooks';
 import { useFetchUserData } from '../../hooks/useFetchUserData';
+import { useRandomGreeting } from '../../hooks/useRandomGreeting';
 import { getInitialAddOrEditNoteValue } from '../../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
-import { getInitialLoginValue } from '../../redux/loginReduxSlice/loginSlice';
+import { getInitialLoginValue } from '../../redux/authReduxSlice/authSlice';
 import { AddOrEditNote, NotesArray } from './components';
 
 const Dashboard: React.FC = () => {
+	const [greeting, setGreeting] = useState('');
 	const [fetchUserData] = useFetchUserData();
+	const [randomGreeting] = useRandomGreeting();
 	const loginStatus = useAppSelector(getInitialLoginValue);
 	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
 
@@ -18,10 +21,17 @@ const Dashboard: React.FC = () => {
 		}, 500);
 
 		return () => clearTimeout(fetchingTimeout);
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [addOrEditNoteStatus, loginStatus]);
 
-	return <div className='dashboard'>{addOrEditNoteStatus !== '' ? <AddOrEditNote /> : <NotesArrayComponent />}</div>;
+	useEffect(() => {
+		if (!greeting) setGreeting(randomGreeting());
+	}, [greeting]);
+
+	return (
+		<div className='dashboard'>
+			{addOrEditNoteStatus !== '' ? <AddOrEditNote /> : <NotesArrayComponent greeting={greeting} />}
+		</div>
+	);
 };
 
 export default Dashboard;

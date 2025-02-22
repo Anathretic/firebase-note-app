@@ -1,30 +1,19 @@
-import { useEffect, useMemo } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase/firebaseClient';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
 import { useDeleteNote } from '../../../hooks/noteHooks';
-import { useRandomGreeting } from '../../../hooks/useRandomGreeting';
-import { getInitialUserDataValue } from '../../../redux/userDataReduxSlice/userDataSlice';
-import { getInitialGreetingValue } from '../../../redux/randomGreetingReduxSlice/randomGreetingSlice';
+import { getSortedUserData } from '../../../redux/userDataReduxSlice/userDataSlice';
 import { editNote } from '../../../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
 import { setEditData } from '../../../redux/editNoteDataReduxSlice/editNoteDataSlice';
+import { NotesArrayComponentModel } from '../../../models/notesArray.model';
 import { scrollToTop } from '../../../utils/scrollToTop';
 import { TiDeleteOutline, TiPencil } from 'react-icons/ti';
 
-const NotesArray: React.FC = () => {
+const NotesArray: React.FC<NotesArrayComponentModel> = ({ greeting }) => {
 	const [user] = useAuthState(auth);
 	const [deleteNote] = useDeleteNote();
-	const [randomGreeting] = useRandomGreeting();
-	const userDataNotesArray = useAppSelector(getInitialUserDataValue);
-	const randomGreetingValue = useAppSelector(getInitialGreetingValue);
+	const sortedUserData = useAppSelector(getSortedUserData);
 	const dispatch = useAppDispatch();
-
-	const sortedUserData = useMemo(() => {
-		// Shallow copy of userDataNotesArray
-		const userData = [...userDataNotesArray];
-		// Sorting the data to fool the users in 100% into thinking they are editing a note
-		return userData.sort((a, b) => a.date - b.date);
-	}, [userDataNotesArray]);
 
 	const handleEdit = (data: object) => {
 		dispatch(editNote());
@@ -32,18 +21,13 @@ const NotesArray: React.FC = () => {
 		scrollToTop();
 	};
 
-	useEffect(() => {
-		randomGreeting();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
 	return (
 		<section className='notes-array'>
-			<div className='notes-array__username'>
-				<p>
-					{randomGreetingValue}
-					{user?.displayName}!
-				</p>
+			<div className='notes-array__greeting'>
+				<h2>
+					{greeting}
+					{user?.displayName}! It's your dashboard!
+				</h2>
 			</div>
 			<div className='notes-array__container'>
 				{sortedUserData.map(data => (

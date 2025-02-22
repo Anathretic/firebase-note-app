@@ -327,17 +327,23 @@ body {
 		padding: 1em;
 	}
 
-	&__username {
+	&__greeting {
 		@include mixins.flex;
 		padding: 1em;
 		border: 1px dashed colors.$white-color;
+		text-align: center;
+
+		h2 {
+			font-weight: normal;
+			font-size: 1em;
+		}
 	}
 
 	&__item {
 		padding: 1em;
 		margin: 1em 0;
 		width: 100%;
-		height: 260px;
+		height: 360px;
 		overflow: auto;
 	}
 

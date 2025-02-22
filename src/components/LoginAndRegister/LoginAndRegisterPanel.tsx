@@ -1,10 +1,10 @@
 import { memo } from 'react';
 import { useAppSelector } from '../../hooks/reduxHooks';
-import { getInitialRegisterValue } from '../../redux/registerReduxSlice/registerSlice';
+import { getInitialRegisterPanelValue } from '../../redux/authReduxSlice/authSlice';
 import { Login, Register } from './components';
 
 const LoginAndRegisterPanel: React.FC = () => {
-	const registerStatus = useAppSelector(getInitialRegisterValue);
+	const registerStatus = useAppSelector(getInitialRegisterPanelValue);
 	const LoginComponent = memo(Login);
 	const RegisterComponent = memo(Register);
 

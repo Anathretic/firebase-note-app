@@ -101,8 +101,10 @@
 	}
 
 	.notes-array {
-		&__username {
-			font-size: 1.2em;
+		&__greeting {
+			h2 {
+				font-size: 1.1em;
+			}
 		}
 
 		&__item {
