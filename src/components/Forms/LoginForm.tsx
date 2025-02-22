@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginUser } from '../../firebase/firebaseClient';
-import { setLogin } from '../../redux/loginReduxSlice/loginSlice';
+import { setLogin } from '../../redux/authReduxSlice/authSlice';
 import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
 import { useAppDispatch } from '../../hooks/reduxHooks';
 import { loginSchema } from '../../schemas/schemas';

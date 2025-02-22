@@ -1,5 +1,5 @@
 import { useAppDispatch } from '../../../hooks/reduxHooks';
-import { openRegister } from '../../../redux/registerReduxSlice/registerSlice';
+import { openRegister } from '../../../redux/authReduxSlice/authSlice';
 import { scrollToTop } from '../../../utils/scrollToTop';
 import { LoginForm } from '../../Forms/LoginForm';
 

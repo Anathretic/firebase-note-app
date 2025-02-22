@@ -11,8 +11,9 @@ export interface UserDataModel {
 	data: NoteItemModel[];
 }
 
-export interface LoginAndRegisterModel {
-	value: boolean;
+export interface AuthModel {
+	isLoggedIn: boolean;
+	showRegisterPanel: boolean;
 }
 
 export interface AddOrEditNoteModel {
@@ -24,9 +25,5 @@ export interface EditNoteDataModel {
 }
 
 export interface ErrorPopupModel {
-	value: string;
-}
-
-export interface RandomGreetingModel {
 	value: string;
 }

@@ -13,7 +13,6 @@ const ResetPassword: React.FC = () => {
 			if (user !== null) navigate('/');
 		});
 		return () => isUserActive();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
