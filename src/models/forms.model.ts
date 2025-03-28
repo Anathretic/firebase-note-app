@@ -1,3 +1,16 @@
+import { UseFormReset } from 'react-hook-form';
+
+// ---------------------useFormSubmits-----------------------
+
+export type FormTypes = LoginFormModel | RegisterFormModel | ResetPasswordFormModel | AddOrEditNoteFormModel;
+
+export interface UseFormSubmitsModel<T extends FormTypes> {
+	reset?: UseFormReset<T>;
+	setButtonValue?: React.Dispatch<React.SetStateAction<string>>;
+}
+
+// ----------------------------------------------------------
+
 export interface RegisterFormModel {
 	email: string;
 	password: string;
@@ -12,10 +25,6 @@ export interface LoginFormModel {
 
 export interface ResetPasswordFormModel {
 	email: string;
-}
-
-export interface AddOrEditNoteComponentModel {
-	handleBack: () => void;
 }
 
 export interface AddOrEditNoteFormModel {

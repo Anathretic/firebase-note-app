@@ -1,14 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { checkIfAccountExists, passwordReset } from '../../firebase/firebaseClient';
+import { useFormSubmits } from '../../hooks/useFormSubmits';
 import { FormInput, FormSubmit } from './components/FormElements';
 import { resetPasswordSchema } from '../../schemas/schemas';
-import { useAppDispatch } from '../../hooks/reduxHooks';
-import { setErrorValue } from '../../redux/errorPopupReduxSlice/errorPopupSlice';
 import { ResetPasswordFormModel } from '../../models/forms.model';
-import { scrollToTop } from '../../utils/scrollToTop';
 
 export const ResetPasswordForm: React.FC = () => {
 	const [buttonValue, setButtonValue] = useState('Send');
@@ -23,33 +19,11 @@ export const ResetPasswordForm: React.FC = () => {
 		},
 		resolver: yupResolver(resetPasswordSchema),
 	});
-	const navigate = useNavigate();
-	const dispatch = useAppDispatch();
 
-	const onSubmit: SubmitHandler<ResetPasswordFormModel> = async ({ email }) => {
-		try {
-			const methods = await checkIfAccountExists(email);
-			if (methods.length === 0) {
-				dispatch(setErrorValue('Email does not exist!'));
-			} else {
-				await passwordReset(email);
-				reset();
-				setButtonValue('Done');
-				setTimeout(() => {
-					setButtonValue('Send');
-					navigate('/');
-					scrollToTop();
-				}, 2500);
-			}
-		} catch (err) {
-			if (err instanceof Error) {
-				dispatch(setErrorValue('Something went wrong.. Try again later!'));
-			}
-		}
-	};
+	const { resetPasswordSubmit } = useFormSubmits<ResetPasswordFormModel>({ reset, setButtonValue });
 
 	return (
-		<form className='form' onSubmit={handleSubmit(onSubmit)}>
+		<form className='form' onSubmit={handleSubmit(resetPasswordSubmit)}>
 			<p className='form__special-text'>
 				If you forgot your password send your email and you will receive a link to reset it. Only works if{' '}
 				<span>you have an account!</span>

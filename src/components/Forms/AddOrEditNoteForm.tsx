@@ -1,16 +1,15 @@
-import { SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useFormSubmits } from '../../hooks/useFormSubmits';
+import { useHandleBack } from '../../hooks/useHandleBack';
 import { useAppSelector } from '../../hooks/reduxHooks';
-import { useAddNote, useEditNote } from '../../hooks/noteHooks';
 import { getInitialAddOrEditNoteValue } from '../../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
 import { getInitialEditNoteDataValue } from '../../redux/editNoteDataReduxSlice/editNoteDataSlice';
 import { noteSchema } from '../../schemas/schemas';
-import { AddOrEditNoteComponentModel, AddOrEditNoteFormModel } from '../../models/forms.model';
+import { AddOrEditNoteFormModel } from '../../models/forms.model';
 import { FormInput, FormTextarea } from './components/FormElements';
 
-export const AddOrEditNoteForm: React.FC<AddOrEditNoteComponentModel> = ({ handleBack }) => {
-	const [addNote] = useAddNote();
-	const [editNote] = useEditNote();
+export const AddOrEditNoteForm: React.FC = () => {
 	const {
 		register,
 		handleSubmit,
@@ -18,20 +17,15 @@ export const AddOrEditNoteForm: React.FC<AddOrEditNoteComponentModel> = ({ handl
 	} = useForm<AddOrEditNoteFormModel>({
 		resolver: yupResolver(noteSchema),
 	});
+
 	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
 	const editData = useAppSelector(getInitialEditNoteDataValue);
 
-	const onSubmit: SubmitHandler<AddOrEditNoteFormModel> = ({ title, note }) => {
-		if (addOrEditNoteStatus === 'editNote') {
-			editNote(editData, note, title, editData.id, editData.date);
-		} else if (addOrEditNoteStatus === 'addNote') {
-			addNote(title, note);
-		}
-		handleBack();
-	};
+	const { handleBack } = useHandleBack();
+	const { addOrEditNoteSubmit } = useFormSubmits<AddOrEditNoteFormModel>({});
 
 	return (
-		<form className='form' onSubmit={handleSubmit(onSubmit)}>
+		<form className='form' onSubmit={handleSubmit(addOrEditNoteSubmit)}>
 			<FormInput
 				label='Title:'
 				inputName='title'
