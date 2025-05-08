@@ -5,7 +5,16 @@ import { auth } from './firebase/firebaseClient';
 import { useAppSelector, useAppDispatch } from './hooks/reduxHooks';
 import { getInitialLoginValue, setLogin, setLogout } from './redux/authReduxSlice/authSlice';
 import { getInitialErrorPopupValue } from './redux/errorPopupReduxSlice/errorPopupSlice';
-import { ErrorPopup, Footer, Header, Loader, LoginAndRegisterPanel, PageNotFound, ResetPassword } from './components';
+import {
+	AppWrapper,
+	ErrorPopup,
+	Footer,
+	Header,
+	Loader,
+	LoginAndRegisterPanel,
+	PageNotFound,
+	ResetPassword,
+} from './components';
 
 const Dashboard = lazy(() => import('./components/Dashboard/Dashboard'));
 
@@ -40,7 +49,7 @@ export const App: React.FC = () => {
 					<Route
 						path='/'
 						element={
-							<main className='app-container'>
+							<AppWrapper>
 								{!login ? (
 									<LoginAndRegisterPanel />
 								) : (
@@ -48,7 +57,7 @@ export const App: React.FC = () => {
 										<Dashboard />
 									</Suspense>
 								)}
-							</main>
+							</AppWrapper>
 						}
 					/>
 					<Route path='/forgot-password' element={<ResetPassword />} />
