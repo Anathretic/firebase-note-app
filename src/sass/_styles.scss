@@ -156,7 +156,7 @@ body {
 		button {
 			@include mixins.button;
 			margin-top: 1em;
-			width: 156px;
+			width: 175px;
 		}
 
 		a {
@@ -177,7 +177,7 @@ body {
 	&__back-button {
 		@include mixins.button;
 		margin: 1em;
-		width: 70%;
+		width: 155px;
 	}
 }
 
@@ -197,13 +197,15 @@ body {
 
 	&__label {
 		padding-bottom: 0.25em;
+		width: 100%;
+		text-align: start;
 	}
 
 	&__input {
 		padding: 0.95em 3.25em 0.95em 0.75em;
 		width: 100%;
 		border: 1px solid colors.$white-color;
-		border-radius: 12px;
+		border-radius: 4px;
 		color: colors.$white-color;
 		background-color: transparent;
 		font-family: 'Nunito', sans-serif;
@@ -281,7 +283,7 @@ body {
 	&__submit {
 		@include mixins.button;
 		margin: 1em 1em 1.25em;
-		width: 156px;
+		width: 175px;
 	}
 
 	&__special-text {
