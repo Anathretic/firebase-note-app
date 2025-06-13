@@ -7,16 +7,10 @@
 }
 
 @media screen and (min-width: 400px) {
-	.add-or-edit-note {
-		&__submit,
-		&__back-button {
-			width: 50%;
-		}
-	}
-
 	.form {
 		&__input,
-		&__textarea {
+		&__textarea,
+		&__label {
 			width: 90%;
 		}
 	}

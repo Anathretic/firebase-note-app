@@ -9,7 +9,7 @@
 		&__button {
 			margin-top: 2em;
 
-			:hover {
+			&:hover {
 				background-color: colors.$second-color;
 			}
 		}
@@ -37,7 +37,7 @@
 	.register {
 		&__form-toggle button,
 		&__form-toggle a {
-			width: 180px;
+			width: 195px;
 			font-size: 1.1em;
 
 			&:hover {
@@ -72,10 +72,14 @@
 
 		&__password-reset-btn {
 			top: -6.3rem;
+
+			&:hover {
+				color: colors.$main-color;
+			}
 		}
 
 		&__submit {
-			width: 180px;
+			width: 195px;
 			font-size: 1.1em;
 
 			&:hover {
