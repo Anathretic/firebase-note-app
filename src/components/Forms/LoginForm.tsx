@@ -39,8 +39,8 @@ export const LoginForm: React.FC = () => {
 				<Link
 					to='/forgot-password'
 					className='form__password-reset-btn'
-					onClick={() => {
-						scrollToTop();
+					onClick={e => {
+						scrollToTop(e);
 					}}>
 					<FaRegQuestionCircle fontSize={18} />
 				</Link>
