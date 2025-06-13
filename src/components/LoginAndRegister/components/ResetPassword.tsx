@@ -46,8 +46,8 @@ const ResetPassword: React.FC = () => {
 							<Link
 								to='/'
 								type='button'
-								onClick={() => {
-									scrollToTop();
+								onClick={e => {
+									scrollToTop(e);
 								}}>
 								Back
 							</Link>
