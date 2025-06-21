@@ -32,7 +32,7 @@ export const ResetPasswordForm: React.FC = () => {
 				label='E-mail:'
 				inputName='email'
 				type='text'
-				placeholder='Enter your e-mail..'
+				placeholder='Enter your e-mail'
 				errorMessage={errors.email?.message}
 				aria-invalid={errors.email ? true : false}
 				{...register('email')}
