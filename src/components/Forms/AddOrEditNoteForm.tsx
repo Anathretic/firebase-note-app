@@ -30,7 +30,7 @@ export const AddOrEditNoteForm: React.FC = () => {
 				label='Title:'
 				inputName='title'
 				type='text'
-				placeholder='Enter your title..'
+				placeholder='Enter your title'
 				defaultValue={addOrEditNoteStatus === 'editNote' ? editData.title : ''}
 				errorMessage={errors.title?.message}
 				aria-invalid={errors.title ? true : false}
@@ -39,7 +39,7 @@ export const AddOrEditNoteForm: React.FC = () => {
 			<FormTextarea
 				label='Note:'
 				inputName='note'
-				placeholder='Enter your note..'
+				placeholder='Enter your note'
 				defaultValue={addOrEditNoteStatus === 'editNote' ? editData.description : ''}
 				errorMessage={errors.note?.message}
 				aria-invalid={errors.note ? true : false}
