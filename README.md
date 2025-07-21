@@ -23,3 +23,9 @@ Addition of note editing based on delete and add functionality and sorting of no
 **Used:** HTML, SASS (CSS preprocessor), React (incl. Redux, React-Hook-Form), TypeScript, Vite, Yup
 
 **URL:** [Note-App](https://with-firebase-note-app.vercel.app/)
+
+_This project is licensed under the MIT License – see the LICENSE file for details._
+
+_This project uses Firebase as a backend service. Firebase is a product by Google and is subject to its own Terms of Service and Privacy Policy._
+
+_Licensing of this code under MIT does not grant any rights to use Firebase itself. Please refer to: [this link](https://firebase.google.com/terms)_
