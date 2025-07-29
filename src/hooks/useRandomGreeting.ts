@@ -16,5 +16,5 @@ export const useRandomGreeting = () => {
 		return greeting;
 	};
 
-	return [randomGreeting];
+	return { randomGreeting };
 };

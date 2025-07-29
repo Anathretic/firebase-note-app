@@ -5,16 +5,17 @@ import { auth } from '../firebase/firebaseClient';
 import { useFetchUserData } from './useFetchUserData';
 import { useAppDispatch } from './reduxHooks';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
+import { UseNoteActionsModel } from '../models/hooks.model';
 
 import uuid from 'react-uuid';
 
-type UseNote = (arg1: string | object, arg2: string, arg3?: string, arg4?: string, arg5?: number) => Promise<void>;
-
-export const useAddNote = () => {
+export const useNoteActions = () => {
 	const [user] = useAuthState(auth);
 	const dispatch = useAppDispatch();
 
-	const addNote: UseNote = async (title, note) => {
+	const { fetchUserData } = useFetchUserData();
+
+	const addNote: UseNoteActionsModel = async (title, note) => {
 		try {
 			await updateDoc(doc(db, 'users', `${user?.uid}`), {
 				notes: arrayUnion({
@@ -31,15 +32,7 @@ export const useAddNote = () => {
 		}
 	};
 
-	return [addNote];
-};
-
-export const useDeleteNote = () => {
-	const [user] = useAuthState(auth);
-	const [fetchUserData] = useFetchUserData();
-	const dispatch = useAppDispatch();
-
-	const deleteNote: UseNote = async (data, id) => {
+	const deleteNote: UseNoteActionsModel = async (data, id) => {
 		if (typeof data === 'object') {
 			try {
 				await updateDoc(doc(db, 'users', `${user?.uid}`), {
@@ -54,15 +47,7 @@ export const useDeleteNote = () => {
 		}
 	};
 
-	return [deleteNote];
-};
-
-export const useEditNote = () => {
-	const [user] = useAuthState(auth);
-	const [fetchUserData] = useFetchUserData();
-	const dispatch = useAppDispatch();
-
-	const editNote: UseNote = async (data, note, title, id, date) => {
+	const editNote: UseNoteActionsModel = async (data, note, title, id, date) => {
 		if (typeof data === 'object') {
 			try {
 				await updateDoc(doc(db, 'users', `${user?.uid}`), {
@@ -85,14 +70,6 @@ export const useEditNote = () => {
 		}
 	};
 
-	return [editNote];
-};
-
-export const useDeleteAllNotes = () => {
-	const [user] = useAuthState(auth);
-	const [fetchUserData] = useFetchUserData();
-	const dispatch = useAppDispatch();
-
 	const deleteAllNotes = async () => {
 		try {
 			await updateDoc(doc(db, 'users', `${user?.uid}`), {
@@ -106,5 +83,5 @@ export const useDeleteAllNotes = () => {
 		}
 	};
 
-	return [deleteAllNotes];
+	return { addNote, deleteNote, editNote, deleteAllNotes };
 };

@@ -5,7 +5,7 @@ import { collection, doc, setDoc, Timestamp } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 import { checkIfAccountExists, loginUser, passwordReset, registerUser } from '../firebase/firebaseClient';
 import { useAppDispatch, useAppSelector } from './reduxHooks';
-import { useAddNote, useEditNote } from './noteHooks';
+import { useNoteActions } from './useNoteActions';
 import { useHandleBack } from './useHandleBack';
 import { setLogin } from '../redux/authReduxSlice/authSlice';
 import { setErrorValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
@@ -13,23 +13,21 @@ import { getInitialAddOrEditNoteValue } from '../redux/addOrEditNoteReduxSlice/a
 import { getInitialEditNoteDataValue } from '../redux/editNoteDataReduxSlice/editNoteDataSlice';
 import {
 	AddOrEditNoteFormModel,
-	FormTypes,
 	LoginFormModel,
 	RegisterFormModel,
 	ResetPasswordFormModel,
-	UseFormSubmitsModel,
 } from '../models/forms.model';
+import { FormTypes, UseFormSubmitsModel } from '../models/hooks.model';
 import { scrollToTop } from '../utils/scrollToTop';
 
 export const useFormSubmits = <T extends FormTypes>({ reset, setButtonValue }: UseFormSubmitsModel<T>) => {
-	const [addNote] = useAddNote();
-	const [editNote] = useEditNote();
 	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
 	const editData = useAppSelector(getInitialEditNoteDataValue);
-
-	const { handleBack } = useHandleBack();
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
+
+	const { addNote, editNote } = useNoteActions();
+	const { handleBack } = useHandleBack();
 
 	const loginSubmit: SubmitHandler<LoginFormModel> = async ({ email, password }) => {
 		try {

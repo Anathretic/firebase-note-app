@@ -1,15 +1,14 @@
-import { UseFormReset } from 'react-hook-form';
+import { FieldErrors, Path, UseFormRegister } from 'react-hook-form';
 
-// ---------------------useFormSubmits-----------------------
-
-export type FormTypes = LoginFormModel | RegisterFormModel | ResetPasswordFormModel | AddOrEditNoteFormModel;
-
-export interface UseFormSubmitsModel<T extends FormTypes> {
-	reset?: UseFormReset<T>;
-	setButtonValue?: React.Dispatch<React.SetStateAction<string>>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface CreateInputModel<T extends Record<string, any>> {
+	label: string;
+	inputName: Path<T>;
+	type: string;
+	placeholder: string;
+	errors: FieldErrors<T>;
+	register: UseFormRegister<T>;
 }
-
-// ----------------------------------------------------------
 
 export interface RegisterFormModel {
 	email: string;

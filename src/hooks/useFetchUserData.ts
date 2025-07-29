@@ -31,5 +31,5 @@ export const useFetchUserData = () => {
 		}
 	};
 
-	return [fetchUserData];
+	return { fetchUserData };
 };
