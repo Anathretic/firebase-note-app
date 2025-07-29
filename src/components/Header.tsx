@@ -1,6 +1,6 @@
 import { logoutUser } from '../firebase/firebaseClient';
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks';
-import { useDeleteAllNotes } from '../hooks/noteHooks';
+import { useNoteActions } from '../hooks/useNoteActions';
 import { addNote, getInitialAddOrEditNoteValue } from '../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
 import { clearUserData } from '../redux/userDataReduxSlice/userDataSlice';
 import { scrollToTop } from '../utils/scrollToTop';
@@ -10,10 +10,11 @@ import { FaTrashAlt, FaRegStickyNote } from 'react-icons/fa';
 import { FiLogOut } from 'react-icons/fi';
 
 const Header: React.FC = () => {
-	const [deleteAllNotes] = useDeleteAllNotes();
 	const loginStatus = useAppSelector(getInitialLoginValue);
 	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
 	const dispatch = useAppDispatch();
+
+	const { deleteAllNotes } = useNoteActions();
 
 	const handleLogout = () => {
 		dispatch(clearUserData());

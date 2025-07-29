@@ -1,62 +1,52 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import { createInput } from '../../../utils/createInput';
 import { LoginFormModel, RegisterFormModel } from '../../../models/forms.model';
 
-export const registerFormInputsConfig = (errors: FieldErrors, register: UseFormRegister<RegisterFormModel>) => [
-	{
-		label: 'Name:',
-		inputName: 'name',
-		type: 'text',
-		placeholder: 'Enter your name',
-		errorMessage: errors.name?.message,
-		isInvalid: !!errors.name,
-		register: register('name'),
-	},
-	{
-		label: 'E-mail:',
-		inputName: 'email',
-		type: 'text',
-		placeholder: 'Enter your e-mail',
-		errorMessage: errors.email?.message,
-		isInvalid: !!errors.email,
-		register: register('email'),
-	},
-	{
-		label: 'Password:',
-		inputName: 'password',
-		type: 'password',
-		placeholder: 'Enter your password',
-		errorMessage: errors.password?.message,
-		isInvalid: !!errors.password,
-		register: register('password'),
-	},
-	{
-		label: 'Confirm password:',
-		inputName: 'confirmPassword',
-		type: 'password',
-		placeholder: 'Confirm your password',
-		errorMessage: errors.confirmPassword?.message,
-		isInvalid: !!errors.confirmPassword,
-		register: register('confirmPassword'),
-	},
-];
+export const registerFormInputsConfig = (
+	errors: FieldErrors<RegisterFormModel>,
+	register: UseFormRegister<RegisterFormModel>
+) => {
+	const fields = [
+		{ label: 'Name:', inputName: 'name' as const, type: 'text', placeholder: 'Enter your name' },
+		{ label: 'E-mail:', inputName: 'email' as const, type: 'text', placeholder: 'Enter your e-mail' },
+		{ label: 'Password:', inputName: 'password' as const, type: 'password', placeholder: 'Enter your password' },
+		{
+			label: 'Confirm password:',
+			inputName: 'confirmPassword' as const,
+			type: 'password',
+			placeholder: 'Confirm your password',
+		},
+	];
 
-export const loginFormInputsConfig = (errors: FieldErrors, register: UseFormRegister<LoginFormModel>) => [
-	{
-		label: 'E-mail:',
-		inputName: 'email',
-		type: 'text',
-		placeholder: 'Enter your e-mail',
-		errorMessage: errors.email?.message,
-		isInvalid: !!errors.email,
-		register: register('email'),
-	},
-	{
-		label: 'Password:',
-		inputName: 'password',
-		type: 'password',
-		placeholder: 'Enter your password',
-		errorMessage: errors.password?.message,
-		isInvalid: !!errors.password,
-		register: register('password'),
-	},
-];
+	return fields.map(({ label, inputName, type, placeholder }) =>
+		createInput({
+			label,
+			inputName,
+			type,
+			placeholder,
+			errors,
+			register,
+		})
+	);
+};
+
+export const loginFormInputsConfig = (
+	errors: FieldErrors<LoginFormModel>,
+	register: UseFormRegister<LoginFormModel>
+) => {
+	const fields = [
+		{ label: 'E-mail:', inputName: 'email' as const, type: 'text', placeholder: 'Enter your e-mail' },
+		{ label: 'Password:', inputName: 'password' as const, type: 'password', placeholder: 'Enter your password' },
+	];
+
+	return fields.map(({ label, inputName, type, placeholder }) =>
+		createInput({
+			label,
+			inputName,
+			type,
+			placeholder,
+			errors,
+			register,
+		})
+	);
+};

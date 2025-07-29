@@ -4,9 +4,10 @@ import { useFetchUserData } from '../hooks/useFetchUserData';
 import { clearErrorValue, getInitialErrorPopupValue } from '../redux/errorPopupReduxSlice/errorPopupSlice';
 
 const ErrorPopup: React.FC = () => {
-	const [fetchUserData] = useFetchUserData();
 	const error = useAppSelector(getInitialErrorPopupValue);
 	const dispatch = useAppDispatch();
+
+	const { fetchUserData } = useFetchUserData();
 
 	const handleButton = () => {
 		if (error.includes('Refresh')) {

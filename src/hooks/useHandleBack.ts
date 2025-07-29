@@ -4,8 +4,8 @@ import { clearEditData } from '../redux/editNoteDataReduxSlice/editNoteDataSlice
 import { scrollToTop } from '../utils/scrollToTop';
 
 export const useHandleBack = () => {
-	const dispatch = useAppDispatch();
 	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
+	const dispatch = useAppDispatch();
 
 	const handleBack = () => {
 		scrollToTop();

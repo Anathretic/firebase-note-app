@@ -8,10 +8,11 @@ import { AddOrEditNote, NotesArray } from './components';
 
 const Dashboard: React.FC = () => {
 	const [greeting, setGreeting] = useState('');
-	const [fetchUserData] = useFetchUserData();
-	const [randomGreeting] = useRandomGreeting();
 	const loginStatus = useAppSelector(getInitialLoginValue);
 	const addOrEditNoteStatus = useAppSelector(getInitialAddOrEditNoteValue);
+
+	const { fetchUserData } = useFetchUserData();
+	const { randomGreeting } = useRandomGreeting();
 
 	const NotesArrayComponent = memo(NotesArray);
 

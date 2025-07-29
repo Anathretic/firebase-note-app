@@ -1,7 +1,7 @@
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../../firebase/firebaseClient';
 import { useAppDispatch, useAppSelector } from '../../../hooks/reduxHooks';
-import { useDeleteNote } from '../../../hooks/noteHooks';
+import { useNoteActions } from '../../../hooks/useNoteActions';
 import { getSortedUserData } from '../../../redux/userDataReduxSlice/userDataSlice';
 import { editNote } from '../../../redux/addOrEditNoteReduxSlice/addOrEditNoteSlice';
 import { setEditData } from '../../../redux/editNoteDataReduxSlice/editNoteDataSlice';
@@ -11,9 +11,10 @@ import { TiDeleteOutline, TiPencil } from 'react-icons/ti';
 
 const NotesArray: React.FC<NotesArrayComponentModel> = ({ greeting }) => {
 	const [user] = useAuthState(auth);
-	const [deleteNote] = useDeleteNote();
 	const sortedUserData = useAppSelector(getSortedUserData);
 	const dispatch = useAppDispatch();
+
+	const { deleteNote } = useNoteActions();
 
 	const handleEdit = (data: object) => {
 		dispatch(editNote());
