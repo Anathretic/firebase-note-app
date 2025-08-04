@@ -1,4 +1,4 @@
-import { FaGithubSquare, FaLinkedin, FaHome } from 'react-icons/fa';
+import { FaGithubSquare, FaLinkedin } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
 	return (
@@ -6,9 +6,6 @@ const Footer: React.FC = () => {
 			<div className='footer__text'>
 				<span>Do you want to see my other projects or repo? Check the links below!</span>
 				<div className='footer__icons-box'>
-					<a className='footer__icon' href='https://konrad-wojtylo.com' target='_blank' rel='noreferrer'>
-						<FaHome />
-					</a>
 					<a
 						className='footer__icon'
 						href='https://github.com/Anathretic/firebase-note-app'
