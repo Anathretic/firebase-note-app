@@ -1,9 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import authSlice from './authReduxSlice/authSlice';
-import userDataSlice from './userDataReduxSlice/userDataSlice';
-import addOrEditNoteSlice from './addOrEditNoteReduxSlice/addOrEditNoteSlice';
-import errorPopupSlice from './errorPopupReduxSlice/errorPopupSlice';
-import editNoteDataSlice from './editNoteDataReduxSlice/editNoteDataSlice';
+import authSlice from '../features/auth/redux/authSlice';
+import userDataSlice from '../shared/redux/userDataSlice';
+import addOrEditNoteSlice from '../features/notes/redux/addOrEditNoteSlice';
+import editNoteDataSlice from '../shared/redux/editNoteDataSlice';
+import errorPopupSlice from '../features/error-popup/redux/errorPopupSlice';
 
 export const rootReducer = combineReducers({
 	authReduxStore: authSlice.reducer,
