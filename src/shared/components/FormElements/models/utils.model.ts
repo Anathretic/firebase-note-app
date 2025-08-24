@@ -1,7 +1,6 @@
 import { FieldErrors, Path, UseFormRegister } from 'react-hook-form';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export interface CreateInputModel<T extends Record<string, any>> {
+export interface CreateInputModel<T extends object> {
 	label: string;
 	inputName: Path<T>;
 	type: string;

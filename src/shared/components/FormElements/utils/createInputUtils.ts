@@ -1,19 +1,23 @@
+import { get } from 'react-hook-form';
 import { CreateInputModel } from '../models/utils.model';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const createInput = <T extends Record<string, any>>({
+export const createInput = <T extends object>({
 	label,
 	inputName,
 	type,
 	placeholder,
 	errors,
 	register,
-}: CreateInputModel<T>) => ({
-	label,
-	inputName,
-	type,
-	placeholder,
-	errorMessage: errors[inputName]?.message,
-	isInvalid: !!errors[inputName],
-	register: register(inputName),
-});
+}: CreateInputModel<T>) => {
+	const fieldError = get(errors, inputName);
+
+	return {
+		label,
+		inputName,
+		type,
+		placeholder,
+		errorMessage: fieldError?.message,
+		isInvalid: !!fieldError,
+		register: register(inputName),
+	};
+};
