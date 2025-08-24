@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../../redux/store';
+import { RootState } from '../../../shared/redux/store';
 import { AuthModel } from '../models/auth.model';
 
 const initialState: AuthModel = {

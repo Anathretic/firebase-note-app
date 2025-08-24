@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useFormSubmits } from '../../../shared/hooks/useFormSubmits';
-import { loginSchema } from '../../../schemas/schemas';
+import { loginSchema } from '../../../shared/schemas/schemas';
 import { LoginFormModel } from '../../../shared/models/forms.model';
 import { FormInput, FormSubmit } from '../../../shared/components/FormElements/FormElements';
 import { loginFormInputsConfig } from '../../../shared/components/FormElements/config/inputsConfig';

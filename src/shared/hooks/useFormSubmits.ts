@@ -10,7 +10,7 @@ import { useHandleBack } from './useHandleBack';
 import { setLogin } from '../../features/auth/redux/authSlice';
 import { setErrorValue } from '../../features/error-popup/redux/errorPopupSlice';
 import { getInitialAddOrEditNoteValue } from '../../features/notes/redux/addOrEditNoteSlice';
-import { getInitialEditNoteDataValue } from '../redux/editNoteDataSlice';
+import { getInitialEditNoteDataValue } from '../redux/sharedSlices/editNoteDataSlice';
 import {
 	AddOrEditNoteFormModel,
 	LoginFormModel,

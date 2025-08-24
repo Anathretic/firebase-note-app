@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../../redux/store';
+import { RootState } from '../../../shared/redux/store';
 import { AddOrEditNoteModel } from '../models/notes.model';
 
 const initialState: AddOrEditNoteModel = {
