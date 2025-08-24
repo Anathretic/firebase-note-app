@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../../redux/store';
-import { EditNoteDataModel } from '../../shared/models/reduxSlices.model';
+import { RootState } from '../store';
+import { EditNoteDataModel } from '../../models/reduxSlices.model';
 
 const initialState: EditNoteDataModel = {
 	data: {

@@ -3,9 +3,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useFormSubmits } from '../../../shared/hooks/useFormSubmits';
 import { useHandleBack } from '../../../shared/hooks/useHandleBack';
 import { useAppSelector } from '../../../shared/hooks/reduxHooks';
-import { getInitialEditNoteDataValue } from '../../../shared/redux/editNoteDataSlice';
+import { getInitialEditNoteDataValue } from '../../../shared/redux/sharedSlices/editNoteDataSlice';
 import { getInitialAddOrEditNoteValue } from '../redux/addOrEditNoteSlice';
-import { noteSchema } from '../../../schemas/schemas';
+import { noteSchema } from '../../../shared/schemas/schemas';
 import { AddOrEditNoteFormModel } from '../../../shared/models/forms.model';
 import { FormInput, FormTextarea } from '../../../shared/components/FormElements/FormElements';
 

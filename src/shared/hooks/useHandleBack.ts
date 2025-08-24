@@ -1,5 +1,5 @@
 import { closeIt, getInitialAddOrEditNoteValue } from '../../features/notes/redux/addOrEditNoteSlice';
-import { clearEditData } from '../redux/editNoteDataSlice';
+import { clearEditData } from '../redux/sharedSlices/editNoteDataSlice';
 import { useAppDispatch, useAppSelector } from './reduxHooks';
 import { scrollToTop } from '../utils/scrollToTop';
 

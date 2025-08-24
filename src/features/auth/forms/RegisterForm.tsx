@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useFormSubmits } from '../../../shared/hooks/useFormSubmits';
-import { registerSchema } from '../../../schemas/schemas';
+import { registerSchema } from '../../../shared/schemas/schemas';
 import { RegisterFormModel } from '../../../shared/models/forms.model';
 import { FormInput, FormSubmit } from '../../../shared/components/FormElements/FormElements';
 import { registerFormInputsConfig } from '../../../shared/components/FormElements/config/inputsConfig';

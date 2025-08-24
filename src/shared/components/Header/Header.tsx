@@ -2,7 +2,7 @@ import { logoutUser } from '../../firebase/firebaseClient';
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks';
 import { useNoteActions } from '../../hooks/useNoteActions';
 import { addNote, getInitialAddOrEditNoteValue } from '../../../features/notes/redux/addOrEditNoteSlice';
-import { clearUserData } from '../../redux/userDataSlice';
+import { clearUserData } from '../../redux/sharedSlices/userDataSlice';
 import { closeRegister, getInitialLoginValue, setLogout } from '../../../features/auth/redux/authSlice';
 import { scrollToTop } from '../../utils/scrollToTop';
 import { FaPlus } from 'react-icons/fa6';

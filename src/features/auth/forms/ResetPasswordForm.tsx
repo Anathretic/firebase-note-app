@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useFormSubmits } from '../../../shared/hooks/useFormSubmits';
 import { FormInput, FormSubmit } from '../../../shared/components/FormElements/FormElements';
-import { resetPasswordSchema } from '../../../schemas/schemas';
+import { resetPasswordSchema } from '../../../shared/schemas/schemas';
 import { ResetPasswordFormModel } from '../../../shared/models/forms.model';
 
 export const ResetPasswordForm: React.FC = () => {

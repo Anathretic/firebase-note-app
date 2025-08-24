@@ -1,6 +1,6 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../redux/store';
-import { UserDataModel } from '../models/reduxSlices.model';
+import { UserDataModel } from '../../models/reduxSlices.model';
 
 const initialState: UserDataModel = {
 	data: [],
