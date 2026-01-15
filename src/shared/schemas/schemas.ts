@@ -13,7 +13,7 @@ export const registerSchema = yup.object({
 		.minUppercase(1, "You should start with a capital letter, shouldn't you?")
 		.matches(/^[a-zA-Z]+$/, 'Only letters without using spaces!')
 		.required(errorMessage.requiredField),
-	email: yup.string().email('Enter a valid e-mail!').required(errorMessage.requiredField),
+	email: yup.string().email('Enter a valid e-mail!').required('E-mail is required!'),
 	password: yup
 		.string()
 		.min(8, 'Must be at least 8 characters long!')
@@ -25,10 +25,13 @@ export const registerSchema = yup.object({
 	confirmPassword: yup
 		.string()
 		.oneOf([yup.ref('password'), undefined], 'Passwords must be the same!')
-		.required(errorMessage.requiredField),
+		.required('Confirm password is a must!'),
 });
 
-export const loginSchema = registerSchema.pick(['email', 'password']);
+export const loginSchema = yup.object({
+	email: yup.string().email('Enter a valid e-mail!').required('E-mail is required!'),
+	password: yup.string().required('Password is required!'),
+});
 
 export const resetPasswordSchema = registerSchema.pick(['email']);
 

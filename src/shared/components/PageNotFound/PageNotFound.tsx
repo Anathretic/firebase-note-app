@@ -11,10 +11,13 @@ const PageNotFound: React.FC = () => {
 				<title>Page Not Found | NoteApp</title>
 				<meta
 					name='description'
-					content="Oops! It looks like this page doesn't exist. Check the address or return to the home page."
+					content='The page you’re looking for can’t be found. Please check the URL or go back to the NoteApp home page.'
 				/>
 				<meta property='og:title' content='Page Not Found | NoteApp' />
-				<meta property='og:description' content='Page not found. Redirect to my offer.' />
+				<meta
+					property='og:description'
+					content='This page doesn’t exist or may have been moved. Visit the NoteApp homepage to continue.'
+				/>
 				<meta property='og:type' content='website' />
 				<meta property='og:url' content={currentUrl} />
 				<meta name='robots' content='noindex, nofollow' />
